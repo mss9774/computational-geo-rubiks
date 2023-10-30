@@ -3,7 +3,7 @@ const scene = new THREE.Scene();
 
 // Create a camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(2, 2, 2);
+camera.position.set(3, 3, 3);
 camera.lookAt(0, 0, 0);
 
 // Create a renderer
@@ -19,7 +19,7 @@ const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
 
 // Create a function to create a single cubelet
 function createCubelet(x, y, z) {
-    const cubeletSize = 1 / 3;
+    const cubeletSize = .95;
     const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
     const cubeletMaterials = [
         materials[0], materials[1], materials[2], // Front, Back, Top
@@ -45,11 +45,10 @@ scene.add(rubiksCube);
 renderer.render(scene, camera);
 // Create an animation loop
 function rotateLayer(layer) {
-    console.log("AHHHHHH")
     // Define the rotation angle (in radians) and the rotation axis
     const angle = Math.PI / 2; // 90 degrees
     let axis = new THREE.Vector3();
-    rubiksCube.rotation.x += 0.300;
+    //rubiksCube.rotation.y += Math.PI/2;
     switch (layer) {
         case 'front':
             axis = new THREE.Vector3(0, 0, 1); // Z-axis
@@ -58,14 +57,19 @@ function rotateLayer(layer) {
     }
 
     // Define the pivot point for the rotation
-    const pivot = new THREE.Vector3(0, 0, 0); // You may need to adjust this point based on your cube's structure
+    const pivot = new THREE.Vector3(0, 0, 1); // You may need to adjust this point based on your cube's structure
 
     // Apply the rotation to each cubelet
     rubiksCube.children.forEach((cubelet) => {
-        const relativePosition = cubelet.position.clone().sub(pivot);
-        relativePosition.applyAxisAngle(axis, angle);
-        cubelet.position.copy(pivot.clone().add(relativePosition));
-        cubelet.rotation.set(0, 0, 0); // Reset cubelet's rotation
+        cubelet.rotation.z += Math.PI/2
+        if(cubelet.position.z !== 1){
+            const relativePosition = cubelet.position.clone().sub(pivot);
+            relativePosition.applyAxisAngle(axis, angle);
+            cubelet.position.copy(pivot.clone().add(relativePosition));
+            cubelet.rotation.set(0, 0, 0); // Reset cubelet's rotation
+            console.log(cubelet.position)
+        }
+
     });
 
     renderer.render(scene, camera);

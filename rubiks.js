@@ -1,3 +1,4 @@
+
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
 const scene = new THREE.Scene();
 
@@ -45,7 +46,7 @@ for (let x = -1; x <= 1; x++) {
 scene.add(rubiksCube);
 renderer.render(scene, camera);
 // Create an animation loop
-function rotateLayer(layer) {
+export function rotateLayer(layer) {
     // Define the rotation angle (in radians) and the rotation axis
     const angle = Math.PI / 2; // 90 degrees
     let axis = new THREE.Vector3();
@@ -65,9 +66,9 @@ function rotateLayer(layer) {
                     cubelet.position.z = -1*temp
 
 
-
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
                    // cubelet.rotateY(Math.PI/2)
-                    cubelet.rotation.y += Math.PI/2; // Reset cubelet's rotation
+                   //  cubelet.rotation.y += Math.PI/2; // Reset cubelet's rotation
                     //cubelet.rotation.z += Math.PI / 2
                 }
             });
@@ -77,11 +78,11 @@ function rotateLayer(layer) {
                 axis = new THREE.Vector3(0, 0, 1);
                 let angle = Math.PI/2
                 if (cubelet.position.z === 1) {
-
                     let temp = cubelet.position.x
                     cubelet.position.x = cubelet.position.y;
                     cubelet.position.y = -1*temp;
-                    cubelet.rotation.z += Math.PI/2; // Reset cubelet's rotation
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+                    //cubelet.rotation.z += Math.PI/2; // Reset cubelet's rotation
 
                 }
 
@@ -110,5 +111,3 @@ const rotate2Button = document.getElementById('rotate-left-button');
 rotate2Button.addEventListener('click', () => {
     rotateLayer('right');
 });
-
-

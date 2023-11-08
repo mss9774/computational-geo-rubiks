@@ -1,5 +1,6 @@
 
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+
 const scene = new THREE.Scene();
 
 // Create a camera
@@ -11,6 +12,7 @@ camera.lookAt(0, 0, 0);
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+
 
 // Define colors for each face of the cube
 const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
@@ -48,48 +50,65 @@ renderer.render(scene, camera);
 // Create an animation loop
 export function rotateLayer(layer) {
     // Define the rotation angle (in radians) and the rotation axis
-    const angle = Math.PI / 2; // 90 degrees
     let axis = new THREE.Vector3();
-    //rubiksCube.rotation.y += Math.PI/2;
     switch (layer) {
+        case 'top':
+            rubiksCube.children.forEach((cubelet) => {
+                if (cubelet.position.y === 1) {
+                    let temp = cubelet.position.x;
+                    cubelet.position.x = cubelet.position.z;
+                    cubelet.position.z = -1 * temp;
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+                }
+            });
+            break;
+
+        case 'bottom':
+            rubiksCube.children.forEach((cubelet) => {
+                if (cubelet.position.y === -1) {
+                    let temp = cubelet.position.x;
+                    cubelet.position.x = cubelet.position.z;
+                    cubelet.position.z = -1 * temp;
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), Math.PI/2);
+                }
+            });
+            break;
+
+        case 'left':
+            rubiksCube.children.forEach((cubelet) => {
+                if (cubelet.position.x === -1) {
+                    let temp = cubelet.position.y;
+                    cubelet.position.y = cubelet.position.z;
+                    cubelet.position.z = -1 * temp;
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), Math.PI/2);
+                }
+            });
+            break;
+
         case 'right':
             rubiksCube.children.forEach((cubelet) => {
                 axis = new THREE.Vector3(0, 1, 0);
-                if (cubelet.position.y === 1) {
-                    const pivot = new THREE.Vector3(0, 1, 0); // You may need to adjust this point based on your cube's structure
-
-                    // const relativePosition = cubelet.position.clone().sub(pivot);
-                    // relativePosition.applyAxisAngle(axis, angle);
-                    // cubelet.position.copy(pivot.clone().add(relativePosition));
-                    let temp = cubelet.position.x
-                    cubelet.position.x = cubelet.position.z
+                if (cubelet.position.x === 1) {
+                    let temp = cubelet.position.y
+                    cubelet.position.y = cubelet.position.z
                     cubelet.position.z = -1*temp
-
-
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
-                   // cubelet.rotateY(Math.PI/2)
-                   //  cubelet.rotation.y += Math.PI/2; // Reset cubelet's rotation
-                    //cubelet.rotation.z += Math.PI / 2
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2);
                 }
             });
             break;
         case 'front':
             rubiksCube.children.forEach((cubelet) => {
-                axis = new THREE.Vector3(0, 0, 1);
-                let angle = Math.PI/2
                 if (cubelet.position.z === 1) {
                     let temp = cubelet.position.x
                     cubelet.position.x = cubelet.position.y;
                     cubelet.position.y = -1*temp;
                     cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
-                    //cubelet.rotation.z += Math.PI/2; // Reset cubelet's rotation
-
                 }
 
             });
-
             //axis = new THREE.Vector3(0, 1, 0); //0Z-axis
             break;// Add cases for other layers (top, bottom, left, right, etc.) as needed
+
     }
     // You may need to adjust this point based on your cube's structure
 
@@ -102,12 +121,27 @@ export function rotateLayer(layer) {
     renderer.render(scene, camera);
 }
 
-const rotateButton = document.getElementById('rotate-front-button');
-rotateButton.addEventListener('click', () => {
+const rotateFrontButton = document.getElementById('rotate-front-button');
+rotateFrontButton.addEventListener('click', () => {
     rotateLayer('front');
 });
 
-const rotate2Button = document.getElementById('rotate-left-button');
-rotate2Button.addEventListener('click', () => {
+const rotateRightButton = document.getElementById('rotate-right-button');
+rotateRightButton.addEventListener('click', () => {
     rotateLayer('right');
+});
+
+const rotateLeftButton = document.getElementById('rotate-left-button');
+rotateLeftButton.addEventListener('click', () => {
+    rotateLayer('left');
+});
+
+const rotateTopButton = document.getElementById('rotate-top-button');
+rotateTopButton.addEventListener('click', () => {
+    rotateLayer('top');
+});
+
+const rotateBottomButton = document.getElementById('rotate-bottom-button');
+rotateBottomButton.addEventListener('click', () => {
+    rotateLayer('bottom');
 });

@@ -15,7 +15,8 @@ document.body.appendChild(renderer.domElement);
 
 
 // Define colors for each face of the cube
-const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
+//const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
+const colors = [0x0000ff, 0x00ff00, 0xffff00, 0xffffff, 0xff0000, 0xffa500];
 
 // Create materials for each face
 const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
@@ -58,7 +59,7 @@ export function rotateLayer(layer) {
                     let temp = cubelet.position.x;
                     cubelet.position.x = cubelet.position.z;
                     cubelet.position.z = -1 * temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), -Math.PI/2);
                 }
             });
             break;
@@ -69,7 +70,7 @@ export function rotateLayer(layer) {
                     let temp = cubelet.position.x;
                     cubelet.position.x = cubelet.position.z;
                     cubelet.position.z = -1 * temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), Math.PI/2);
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI/2);
                 }
             });
             break;
@@ -92,7 +93,7 @@ export function rotateLayer(layer) {
                     let temp = cubelet.position.y
                     cubelet.position.y = cubelet.position.z
                     cubelet.position.z = -1*temp
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), -Math.PI/2);
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), -Math.PI/2);
                 }
             });
             break;
@@ -102,13 +103,24 @@ export function rotateLayer(layer) {
                     let temp = cubelet.position.x
                     cubelet.position.x = cubelet.position.y;
                     cubelet.position.y = -1*temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, -1), -Math.PI/2);
                 }
 
             });
             //axis = new THREE.Vector3(0, 1, 0); //0Z-axis
             break;// Add cases for other layers (top, bottom, left, right, etc.) as needed
+        case 'back':
+            rubiksCube.children.forEach((cubelet) => {
+                if (cubelet.position.z === -1) {
+                    let temp = cubelet.position.x
+                    cubelet.position.x = cubelet.position.y;
+                    cubelet.position.y = -1*temp;
+                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+                }
 
+            });
+            //axis = new THREE.Vector3(0, 1, 0); //0Z-axis
+            break;
     }
     // You may need to adjust this point based on your cube's structure
 
@@ -144,4 +156,9 @@ rotateTopButton.addEventListener('click', () => {
 const rotateBottomButton = document.getElementById('rotate-bottom-button');
 rotateBottomButton.addEventListener('click', () => {
     rotateLayer('bottom');
+});
+
+const rotateBackButton = document.getElementById('rotate-back-button');
+rotateBackButton.addEventListener('click', () => {
+    rotateLayer('back');
 });

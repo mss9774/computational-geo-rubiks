@@ -183,24 +183,28 @@ function replaceRowWithColumn(matrixA, matrixB, rowToReplace, columnFromMatrixB,
     return resultMatrix;
 }
 
-
+//   4
+// 3 0 1 2
+//   5
 //Centers on 1 //Moves 2L 4R 5B 6T
 function rotateFrontCounterClockwise() {
 
     cube[0] = rotateMatrixCounterclockwise(cube[0])
     const temp1 = cube[1];
-    const temp2 = cube[2];
     const temp3 = cube[3];
     const temp4 = cube[4];
     const temp5 = cube[5];
-    cube[3] = replaceColumnWithRow(cube[3], cube[4], 2, 2, false);
+    cube[3] = replaceColumnWithRow(cube[3], temp4, 2, 2, false);
     cube[5] = replaceRowWithColumn(cube[5], temp3,  0, 2, true);
     cube[1] = replaceColumnWithRow(cube[1], temp5, 0, 2, false);
     cube[4] = replaceRowWithColumn(cube[4], temp1, 2, 0, true);
 
 }
 
-function rotateLeftCounterClockwise() {
+//   4
+// 3 0 1 2
+//   5
+function rotateRightCounterClockwise() {
 
     cube[1] = rotateMatrixCounterclockwise(cube[1])
     const temp0 = cube[0];
@@ -215,6 +219,9 @@ function rotateLeftCounterClockwise() {
 
 }
 
+//   4
+// 3 0 1 2
+//   5
 function rotateBackCounterClockwise(){
     cube[2] = rotateMatrixCounterclockwise(cube[2])
     const temp0 = cube[0];
@@ -226,12 +233,58 @@ function rotateBackCounterClockwise(){
     cube[5] = replaceRowWithColumn(temp5, temp1,  2, 2, true);
     cube[3] = replaceColumnWithRow(temp3, temp5, 0, 2, false);
     cube[4] = replaceRowWithColumn(temp4, temp3, 0, 0, true);
+}
+
+//   4
+// 3 0 1 2
+//   5
+function rotateLeftCounterClockwise() {
+
+    cube[3] = rotateMatrixCounterclockwise(cube[3])
+    const temp0 = cube[0];
+    const temp2 = cube[2];
+    const temp3 = cube[3];
+    const temp4 = cube[4];
+    const temp5 = cube[5];
+    cube[2] = replaceColumn(temp2, temp4, 2, 0, true);
+    cube[5] = replaceColumn(temp5, temp2, 0, 2, true);
+    cube[0] = replaceColumn(temp0, temp5, 0, 0, false);
+    cube[4] = replaceColumn(temp4, temp0, 0, 0, false);
 
 }
 
+//   4
+// 3 0 1 2
+//   5
+function rotateTopCounterClockwise() {
 
-const rotate2Button = document.getElementById('PANIC');
+    cube[4] = rotateMatrixCounterclockwise(cube[4])
+    const temp0 = cube[0];
+    const temp1 = cube[1];
+    const temp2 = cube[2];
+    const temp3 = cube[3];
+    const temp4 = cube[4];
+    const temp5 = cube[5];
+    cube[0][0] = temp3[0]
+    cube[1][0] = temp0[0]
+    cube[2][0] = temp1[0]
+    cube[3][0] = temp2[0]
+}
 
-rotate2Button.addEventListener('click', () => {
-    rotateLayer('front')
-});
+//   4
+// 3 0 1 2
+//   5
+function rotateBottomCounterClockwise() {
+    cube[5] = rotateMatrixCounterclockwise(cube[5])
+    const temp0 = cube[0];
+    const temp1 = cube[1];
+    const temp2 = cube[2];
+    const temp3 = cube[3];
+    const temp4 = cube[4];
+    const temp5 = cube[5];
+    cube[3][2] = temp0[2]
+    cube[2][2] = temp3[2]
+    cube[1][2] = temp2[2]
+    cube[0][2] = temp1[2]
+}
+

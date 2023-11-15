@@ -1,11 +1,18 @@
 import {rotateLayer}from './rubiks.js'
+import {func} from "three/addons/nodes/code/FunctionNode";
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
 const cube = [
     // Define the six faces of the cube
-    //       6
-    // 1 2 3 4
-    //       5
+//   4
+// 3 0 1 2
+//   5
+    // 0 = RED
+    // 1 = GREEN
+    // 2 = ORANGE
+    // 3 = BLUE
+    // 4 = YELLOW
+    // 5 = WHITE
     [
         ['R', 'R', 'R'],
         ['R', 'R', 'R'],
@@ -287,4 +294,58 @@ function rotateBottomCounterClockwise() {
     cube[1][2] = temp2[2]
     cube[0][2] = temp1[2]
 }
+
+function rotateBottomClockwise(){
+    rotateBottomCounterClockwise()
+    rotateBottomCounterClockwise()
+    rotateBottomCounterClockwise()
+}
+
+function rotateFrontClockwise(){
+    rotateFrontCounterClockwise()
+    rotateFrontCounterClockwise()
+    rotateFrontCounterClockwise()
+}
+
+function rotateRightClockwise(){
+    rotateRightCounterClockwise()
+    rotateRightCounterClockwise()
+    rotateRightCounterClockwise()
+}
+
+function rotateLeftClockwise(){
+    rotateLeftCounterClockwise()
+    rotateLeftCounterClockwise()
+    rotateLeftCounterClockwise()
+}
+
+function rotateTopClockwise(){
+    rotateTopCounterClockwise()
+    rotateTopCounterClockwise()
+    rotateTopCounterClockwise()
+}
+
+function rotateBackClockwise(){
+    rotateBackCounterClockwise()
+    rotateBackCounterClockwise()
+    rotateBackCounterClockwise()
+}
+
+
+
+//   4
+// 3 0 1 2
+//   5
+// function getEdges(){
+//     var rightEdges = [[cube[0][1][2], cube[1][1][0]],
+//         [cube[1][1][2], cube[2][1][0]],
+//         [cube[0][1][2], cube[1][1][0]],
+//         [cube[0][1][2], cube[1][1][0]]]
+//     var myArray = [];
+//     for (var i = 0; i < 6; i++) {
+//         for (var j = 0; j < 6; j++) {
+//             myArray.push(((i,j), (cube[i])))
+//         }
+//     }
+// }
 

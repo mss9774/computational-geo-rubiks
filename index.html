@@ -4,12 +4,40 @@
     <title>Hello, Three.js!</title>
 </head>
 <body>
-<button id="rotate-front-button">Rotate Front Face</button>
-<button id="rotate-left-button">Rotate Left Face</button>
-<button id="rotate-right-button">Rotate Right Face</button>
-<button id="rotate-top-button">Rotate Top Face</button>
-<button id="rotate-bottom-button">Rotate Bottom Face</button>
-<button id="rotate-back-button">Rotate Back Face</button>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Red</th>
+            <th>Blue</th>
+            <th>Yellow</th>
+            <th>White</th>
+            <th>Green</th>
+            <th>Orange</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>Counter Clockwise</th>
+            <td><button id="rotate-front-button">Rotate Front Face</button></td>
+            <td><button id="rotate-left-button">Rotate Left Face</button></td>
+            <td><button id="rotate-top-button">Rotate Top Face</button></td>
+            <td><button id="rotate-bottom-button">Rotate Bottom Face</button></td>
+            <td><button id="rotate-right-button">Rotate Right Face</button></td>
+            <td><button id="rotate-back-button">Rotate Back Face</button></td>
+        </tr>
+        <tr>
+            <th>Clockwise</th>
+            <td><button id="rotate-front-button-c">Rotate Front Face</button></td>
+            <td><button id="rotate-left-button-c">Rotate Left Face</button></td>
+            <td><button id="rotate-top-button-c">Rotate Top Face</button></td>
+            <td><button id="rotate-bottom-button-c">Rotate Bottom Face</button></td>
+            <td><button id="rotate-right-button-c">Rotate Right Face</button></td>
+            <td><button id="rotate-back-button-c">Rotate Back Face</button></td>
+        </tr>
+        </tbody>
+    </table>
+
 <div id="cube-container"></div>
     <script type="module" src="rubiks.js"></script>
 </body>

@@ -16,7 +16,7 @@ document.body.appendChild(renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
-const colors = [0x0000ff, 0x00ff00, 0xffff00, 0xffffff, 0xff0000, 0xffa500];
+const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500];
 
 // Create materials for each face
 const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
@@ -49,76 +49,149 @@ for (let x = -1; x <= 1; x++) {
 scene.add(rubiksCube);
 renderer.render(scene, camera);
 // Create an animation loop
-export function rotateLayer(layer) {
+export function rotateLayer(layer, counter) {
     // Define the rotation angle (in radians) and the rotation axis
     let axis = new THREE.Vector3();
     switch (layer) {
         case 'top':
-            rubiksCube.children.forEach((cubelet) => {
-                if (cubelet.position.y === 1) {
-                    let temp = cubelet.position.x;
-                    cubelet.position.x = cubelet.position.z;
-                    cubelet.position.z = -1 * temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), -Math.PI/2);
-                }
-            });
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === 1) {
+                        let temp = cubelet.position.x;
+                        cubelet.position.x = cubelet.position.z;
+                        cubelet.position.z = -1 * temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), -Math.PI/2);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === 1) {
+                        let temp = cubelet.position.x;
+                        cubelet.position.x = cubelet.position.z;
+                        cubelet.position.z = -1 * temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), Math.PI/2);
+                    }
+                });
+            }
+
             break;
 
         case 'bottom':
-            rubiksCube.children.forEach((cubelet) => {
-                if (cubelet.position.y === -1) {
-                    let temp = cubelet.position.x;
-                    cubelet.position.x = cubelet.position.z;
-                    cubelet.position.z = -1 * temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI/2);
-                }
-            });
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === -1) {
+                        let temp = cubelet.position.x;
+                        cubelet.position.x = cubelet.position.z;
+                        cubelet.position.z = -1 * temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI/2);
+                    }
+                });
+            }else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === -1) {
+                        let temp = cubelet.position.x;
+                        cubelet.position.x = cubelet.position.z;
+                        cubelet.position.z = -1 * temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -Math.PI/2);
+                    }
+                });
+            }
+
             break;
 
         case 'left':
-            rubiksCube.children.forEach((cubelet) => {
-                if (cubelet.position.x === -1) {
-                    let temp = cubelet.position.y;
-                    cubelet.position.y = cubelet.position.z;
-                    cubelet.position.z = -1 * temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), Math.PI/2);
-                }
-            });
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.x === -1) {
+                        let temp = cubelet.position.y;
+                        cubelet.position.y = cubelet.position.z;
+                        cubelet.position.z = -1 * temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), Math.PI/2);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.x === -1) {
+                        let temp = cubelet.position.y;
+                        cubelet.position.y = cubelet.position.z;
+                        cubelet.position.z = -1 * temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), -Math.PI/2);
+                    }
+                });
+            }
+
             break;
 
         case 'right':
-            rubiksCube.children.forEach((cubelet) => {
-                axis = new THREE.Vector3(0, 1, 0);
-                if (cubelet.position.x === 1) {
-                    let temp = cubelet.position.y
-                    cubelet.position.y = cubelet.position.z
-                    cubelet.position.z = -1*temp
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), -Math.PI/2);
-                }
-            });
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    axis = new THREE.Vector3(0, 1, 0);
+                    if (cubelet.position.x === 1) {
+                        let temp = cubelet.position.y
+                        cubelet.position.y = cubelet.position.z
+                        cubelet.position.z = -1*temp
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), -Math.PI/2);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    axis = new THREE.Vector3(0, 1, 0);
+                    if (cubelet.position.x === 1) {
+                        let temp = cubelet.position.y
+                        cubelet.position.y = cubelet.position.z
+                        cubelet.position.z = -1*temp
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), Math.PI/2);
+                    }
+                });
+
+            }
+
             break;
         case 'front':
-            rubiksCube.children.forEach((cubelet) => {
-                if (cubelet.position.z === 1) {
-                    let temp = cubelet.position.x
-                    cubelet.position.x = cubelet.position.y;
-                    cubelet.position.y = -1*temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, -1), -Math.PI/2);
-                }
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === 1) {
+                        let temp = cubelet.position.x
+                        cubelet.position.x = cubelet.position.y;
+                        cubelet.position.y = -1*temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, -1), -Math.PI/2);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === 1) {
+                        let temp = cubelet.position.x
+                        cubelet.position.x = cubelet.position.y;
+                        cubelet.position.y = -1*temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, -1), Math.PI/2);
+                    }
 
-            });
+                });
+            }
+
             //axis = new THREE.Vector3(0, 1, 0); //0Z-axis
             break;// Add cases for other layers (top, bottom, left, right, etc.) as needed
         case 'back':
-            rubiksCube.children.forEach((cubelet) => {
-                if (cubelet.position.z === -1) {
-                    let temp = cubelet.position.x
-                    cubelet.position.x = cubelet.position.y;
-                    cubelet.position.y = -1*temp;
-                    cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
-                }
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === -1) {
+                        let temp = cubelet.position.x
+                        cubelet.position.x = cubelet.position.y;
+                        cubelet.position.y = -1*temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -Math.PI/2);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === -1) {
+                        let temp = cubelet.position.x
+                        cubelet.position.x = cubelet.position.y;
+                        cubelet.position.y = -1*temp;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI/2);
+                    }
+                });
+            }
 
-            });
             //axis = new THREE.Vector3(0, 1, 0); //0Z-axis
             break;
     }
@@ -135,30 +208,62 @@ export function rotateLayer(layer) {
 
 const rotateFrontButton = document.getElementById('rotate-front-button');
 rotateFrontButton.addEventListener('click', () => {
-    rotateLayer('front');
+    rotateLayer('front', true);
 });
 
 const rotateRightButton = document.getElementById('rotate-right-button');
 rotateRightButton.addEventListener('click', () => {
-    rotateLayer('right');
+    rotateLayer('right', true);
 });
 
 const rotateLeftButton = document.getElementById('rotate-left-button');
 rotateLeftButton.addEventListener('click', () => {
-    rotateLayer('left');
+    rotateLayer('left', true);
 });
 
 const rotateTopButton = document.getElementById('rotate-top-button');
 rotateTopButton.addEventListener('click', () => {
-    rotateLayer('top');
+    rotateLayer('top', true);
 });
 
 const rotateBottomButton = document.getElementById('rotate-bottom-button');
 rotateBottomButton.addEventListener('click', () => {
-    rotateLayer('bottom');
+    rotateLayer('bottom', true);
 });
 
 const rotateBackButton = document.getElementById('rotate-back-button');
 rotateBackButton.addEventListener('click', () => {
-    rotateLayer('back');
+    rotateLayer('back', true);
+});
+
+
+
+const rotateFrontCButton = document.getElementById('rotate-front-button-c');
+rotateFrontCButton.addEventListener('click', () => {
+    rotateLayer('front', false);
+});
+
+const rotateRightCButton = document.getElementById('rotate-right-button-c');
+rotateRightCButton.addEventListener('click', () => {
+    rotateLayer('right', false);
+});
+
+const rotateLeftCButton = document.getElementById('rotate-left-button-c');
+rotateLeftCButton.addEventListener('click', () => {
+    rotateLayer('left', false);
+});
+
+const rotateTopCButton = document.getElementById('rotate-top-button-c');
+rotateTopCButton.addEventListener('click', () => {
+    rotateLayer('top', false);
+});
+
+const rotateBottomCButton = document.getElementById('rotate-bottom-button-c');
+rotateBottomCButton.addEventListener('click', () => {
+    rotateLayer('bottom', false);
+});
+
+const rotateBackCButton = document.getElementById('rotate-back-button-c');
+rotateBackCButton.addEventListener('click', () => {
+    rotateLayer('back', false);
 });

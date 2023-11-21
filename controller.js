@@ -1,5 +1,5 @@
-import {rotateLayer}from './rubiks.js'
-import {func} from "three/addons/nodes/code/FunctionNode";
+import {rotateLayer} from './rubiks.js'
+// import {func} from "three/addons/nodes/code/FunctionNode";
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
 const cube = [
@@ -45,7 +45,6 @@ const cube = [
         ['W', 'W', 'W'],
     ],
 ];
-
 function rotateMatrixClockwise(matrix) {
     const n = matrix.length;
 
@@ -109,8 +108,6 @@ function replaceColumn(matrixA, matrixB, columnToReplace, columnFromMatrixB, rev
                 if(!reverse){
                     resultMatrix[row][col] = matrixB[row][columnFromMatrixB];
                 }else {
-                    console.log(matrixB[row])
-                    console.log(matrixB[row].reverse())
                     resultMatrix[row][col] = matrixB[2-row][columnFromMatrixB];
                 }
             } else {
@@ -203,7 +200,7 @@ function rotateFrontCounterClockwise() {
     const temp5 = cube[5];
     cube[3] = replaceColumnWithRow(cube[3], temp4, 2, 2, false);
     cube[5] = replaceRowWithColumn(cube[5], temp3,  0, 2, true);
-    cube[1] = replaceColumnWithRow(cube[1], temp5, 0, 2, false);
+    cube[1] = replaceColumnWithRow(cube[1], temp5, 0, 0, false);
     cube[4] = replaceRowWithColumn(cube[4], temp1, 2, 0, true);
 
 }
@@ -266,12 +263,10 @@ function rotateLeftCounterClockwise() {
 function rotateTopCounterClockwise() {
 
     cube[4] = rotateMatrixCounterclockwise(cube[4])
-    const temp0 = cube[0];
-    const temp1 = cube[1];
-    const temp2 = cube[2];
-    const temp3 = cube[3];
-    const temp4 = cube[4];
-    const temp5 = cube[5];
+    const temp0 = [...cube[0]];
+    const temp1 = [...cube[1]];
+    const temp2 = [...cube[2]];
+    const temp3 = [...cube[3]];
     cube[0][0] = temp3[0]
     cube[1][0] = temp0[0]
     cube[2][0] = temp1[0]
@@ -283,12 +278,10 @@ function rotateTopCounterClockwise() {
 //   5
 function rotateBottomCounterClockwise() {
     cube[5] = rotateMatrixCounterclockwise(cube[5])
-    const temp0 = cube[0];
-    const temp1 = cube[1];
-    const temp2 = cube[2];
-    const temp3 = cube[3];
-    const temp4 = cube[4];
-    const temp5 = cube[5];
+    const temp0 = [...cube[0]];
+    const temp1 = [...cube[1]];
+    const temp2 = [...cube[2]];
+    const temp3 = [...cube[3]];
     cube[3][2] = temp0[2]
     cube[2][2] = temp3[2]
     cube[1][2] = temp2[2]
@@ -305,6 +298,7 @@ function rotateFrontClockwise(){
     rotateFrontCounterClockwise()
     rotateFrontCounterClockwise()
     rotateFrontCounterClockwise()
+
 }
 
 function rotateRightClockwise(){
@@ -331,8 +325,154 @@ function rotateBackClockwise(){
     rotateBackCounterClockwise()
 }
 
+function handleRotate(layer, count){
+    rotateLayer(layer, count)
+    // console.log(count)
+
+    switch (layer) {
+        case 'front':
+            if(count){
+                rotateFrontCounterClockwise()
+            } else {
+                rotateFrontClockwise()
+            }
+            break;
+        case "back":
+            if(count){
+                rotateBackCounterClockwise()
+            } else {
+                rotateBackClockwise()
+            }
+            break;
+        case "right":
+            if(count){
+                rotateRightCounterClockwise()
+            } else {
+                rotateRightClockwise()
+            }
+            break;
+        case "left":
+            if(count){
+                rotateLeftCounterClockwise()
+            } else {
+                rotateLeftClockwise()
+            }
+            break;
+        case "top":
+            if(count){
+                rotateTopCounterClockwise()
+            } else {
+                rotateTopClockwise()
+            }
+            break;
+        case "bottom":
+            if(count){
+                rotateBottomCounterClockwise()
+            } else {
+                rotateBottomClockwise()
+            }
+            break;
+    }
 
 
+}
+
+function randomScramble(){
+    const myArray = ["front", "back", "top", "bottom", "left", "right"];
+    for (let i = 0; i < 10; i++) {
+        const randomIndex = Math.floor(Math.random() * myArray.length);
+        const conter = Math.floor(Math.random() * 2);
+        console.log(myArray[randomIndex], conter)
+        if(conter === 1){
+            handleRotate(myArray[randomIndex], true)
+        } else  {
+            handleRotate(myArray[randomIndex], false)
+        }
+
+    }
+    console.log(cube)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+const scramble = document.getElementById('scramble');
+scramble.addEventListener('click', () => {
+    randomScramble();
+});
+
+
+const rotateFrontButton = document.getElementById('rotate-front-button');
+rotateFrontButton.addEventListener('click', () => {
+    handleRotate('front', true);
+});
+
+const rotateRightButton = document.getElementById('rotate-right-button');
+rotateRightButton.addEventListener('click', () => {
+    handleRotate('right', true);
+});
+
+const rotateLeftButton = document.getElementById('rotate-left-button');
+rotateLeftButton.addEventListener('click', () => {
+    handleRotate('left', true);
+});
+
+const rotateTopButton = document.getElementById('rotate-top-button');
+rotateTopButton.addEventListener('click', () => {
+    handleRotate('top', true);
+});
+
+const rotateBottomButton = document.getElementById('rotate-bottom-button');
+rotateBottomButton.addEventListener('click', () => {
+    handleRotate('bottom', true);
+});
+
+const rotateBackButton = document.getElementById('rotate-back-button');
+rotateBackButton.addEventListener('click', () => {
+    handleRotate('back', true);
+});
+
+
+
+const rotateFrontCButton = document.getElementById('rotate-front-button-c');
+rotateFrontCButton.addEventListener('click', () => {
+    handleRotate('front', false);
+});
+
+const rotateRightCButton = document.getElementById('rotate-right-button-c');
+rotateRightCButton.addEventListener('click', () => {
+    handleRotate('right', false);
+});
+
+const rotateLeftCButton = document.getElementById('rotate-left-button-c');
+rotateLeftCButton.addEventListener('click', () => {
+    handleRotate('left', false);
+});
+
+const rotateTopCButton = document.getElementById('rotate-top-button-c');
+rotateTopCButton.addEventListener('click', () => {
+    handleRotate('top', false);
+});
+
+const rotateBottomCButton = document.getElementById('rotate-bottom-button-c');
+rotateBottomCButton.addEventListener('click', () => {
+    handleRotate('bottom', false);
+});
+
+const rotateBackCButton = document.getElementById('rotate-back-button-c');
+rotateBackCButton.addEventListener('click', () => {
+    handleRotate('back', false);
+});
 //   4
 // 3 0 1 2
 //   5
@@ -348,4 +488,5 @@ function rotateBackClockwise(){
 //         }
 //     }
 // }
+
 

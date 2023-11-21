@@ -80,12 +80,23 @@ function rotateMatrixCounterclockwise(matrix) {
         [0, 0, 0],
     ];
 
-    for (let row = 0; row < n; row++) {
-        for (let col = 0; col < n; col++) {
-            // Rotate counterclockwise by swapping rows and inverting column indices
-            rotatedMatrix[row][col] = matrix[col][n - 1 - row];
-        }
-    }
+    // for (let row = 0; row < n; row++) {
+    //     for (let col = 0; col < n; col++) {
+    //         // Rotate counterclockwise by swapping rows and inverting column indices
+    //         rotatedMatrix[row][col] = matrix[col][n - 1 - row];
+    //     }
+    // }
+    rotatedMatrix[0][0] = matrix[0][2]
+    rotatedMatrix[0][1] = matrix[1][2]
+    rotatedMatrix[0][2] = matrix[2][2]
+
+    rotatedMatrix[1][0] = matrix[0][1]
+    rotatedMatrix[1][1] = matrix[1][1]
+    rotatedMatrix[1][2] = matrix[2][1]
+
+    rotatedMatrix[2][0] = matrix[0][0]
+    rotatedMatrix[2][1] = matrix[1][0]
+    rotatedMatrix[2][2] = matrix[2][0]
     return rotatedMatrix;
 }
 function replaceColumn(matrixA, matrixB, columnToReplace, columnFromMatrixB, reverse) {
@@ -194,14 +205,14 @@ function replaceRowWithColumn(matrixA, matrixB, rowToReplace, columnFromMatrixB,
 function rotateFrontCounterClockwise() {
 
     cube[0] = rotateMatrixCounterclockwise(cube[0])
-    const temp1 = cube[1];
-    const temp3 = cube[3];
-    const temp4 = cube[4];
-    const temp5 = cube[5];
-    cube[3] = replaceColumnWithRow(cube[3], temp4, 2, 2, false);
-    cube[5] = replaceRowWithColumn(cube[5], temp3,  0, 2, true);
-    cube[1] = replaceColumnWithRow(cube[1], temp5, 0, 0, false);
-    cube[4] = replaceRowWithColumn(cube[4], temp1, 2, 0, true);
+    const temp1 = [...cube[1]];
+    const temp3 = [...cube[3]];
+    const temp4 = [...cube[4]];
+    const temp5 = [...cube[5]];
+    cube[3] = replaceColumnWithRow(cube[3], temp4, 2, 2, true);
+    cube[5] = replaceRowWithColumn(cube[5], temp3,  0, 2, false);
+    cube[1] = replaceColumnWithRow(cube[1], temp5, 0, 0, true);
+    cube[4] = replaceRowWithColumn(cube[4], temp1, 2, 0, false);
 
 }
 
@@ -211,11 +222,10 @@ function rotateFrontCounterClockwise() {
 function rotateRightCounterClockwise() {
 
     cube[1] = rotateMatrixCounterclockwise(cube[1])
-    const temp0 = cube[0];
-    const temp2 = cube[2];
-    const temp3 = cube[3];
-    const temp4 = cube[4];
-    const temp5 = cube[5];
+    const temp0 = [...cube[0]];
+    const temp2 = [...cube[2]];
+    const temp4 = [...cube[4]];
+    const temp5 = [...cube[5]];
     cube[0] = replaceColumn(temp0, temp4, 2, 2, false);
     cube[5] = replaceColumn(temp5, temp0, 2, 2, false);
     cube[2] = replaceColumn(temp2, temp5, 0, 2, true);
@@ -228,11 +238,10 @@ function rotateRightCounterClockwise() {
 //   5
 function rotateBackCounterClockwise(){
     cube[2] = rotateMatrixCounterclockwise(cube[2])
-    const temp0 = cube[0];
-    const temp1 = cube[1];
-    const temp3 = cube[3];
-    const temp4 = cube[4];
-    const temp5 = cube[5];
+    const temp1 = [...cube[1]];
+    const temp3 = [...cube[3]];
+    const temp4 = [...cube[4]];
+    const temp5 = [...cube[5]];
     cube[1] = replaceColumnWithRow(cube[1], cube[4], 2, 0, false);
     cube[5] = replaceRowWithColumn(temp5, temp1,  2, 2, true);
     cube[3] = replaceColumnWithRow(temp3, temp5, 0, 2, false);
@@ -245,11 +254,10 @@ function rotateBackCounterClockwise(){
 function rotateLeftCounterClockwise() {
 
     cube[3] = rotateMatrixCounterclockwise(cube[3])
-    const temp0 = cube[0];
-    const temp2 = cube[2];
-    const temp3 = cube[3];
-    const temp4 = cube[4];
-    const temp5 = cube[5];
+    const temp0 = [...cube[0]];
+    const temp2 = [...cube[2]];
+    const temp4 = [...cube[4]];
+    const temp5 = [...cube[5]];
     cube[2] = replaceColumn(temp2, temp4, 2, 0, true);
     cube[5] = replaceColumn(temp5, temp2, 0, 2, true);
     cube[0] = replaceColumn(temp0, temp5, 0, 0, false);
@@ -379,7 +387,7 @@ function handleRotate(layer, count){
 
 function randomScramble(){
     const myArray = ["front", "back", "top", "bottom", "left", "right"];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 40; i++) {
         const randomIndex = Math.floor(Math.random() * myArray.length);
         const conter = Math.floor(Math.random() * 2);
         console.log(myArray[randomIndex], conter)

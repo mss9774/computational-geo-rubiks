@@ -1,5 +1,6 @@
 
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 
@@ -13,6 +14,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+const controls = new OrbitControls(camera, renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
@@ -244,3 +246,9 @@ export function rotateLayer(layer, counter) {
 // rotateBackCButton.addEventListener('click', () => {
 //     rotateLayer('back', false);
 // });
+const animate = () => {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+animate();

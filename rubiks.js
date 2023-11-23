@@ -1,6 +1,6 @@
 
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+//import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 
@@ -11,10 +11,14 @@ camera.lookAt(0, 0, 0);
 
 // Create a renderer
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+const scale = .5; // Set your desired width
+renderer.setSize(window.innerWidth * scale, window.innerHeight * scale);
 
-const controls = new OrbitControls(camera, renderer.domElement);
+
+const sceneContainer = document.getElementById('cube-container');
+sceneContainer.appendChild(renderer.domElement);
+
+//const controls = new OrbitControls(camera, renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
@@ -248,6 +252,7 @@ export function rotateLayer(layer, counter) {
 // });
 const animate = () => {
     requestAnimationFrame(animate);
+    // controls.update();
     renderer.render(scene, camera);
 }
 

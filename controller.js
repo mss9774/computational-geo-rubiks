@@ -2,7 +2,7 @@ import {rotateLayer} from './rubiks.js'
 // import {func} from "three/addons/nodes/code/FunctionNode";
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
-const cube = [
+export const cube = [
     // Define the six faces of the cube
 //   4
 // 3 0 1 2
@@ -333,7 +333,7 @@ function rotateBackClockwise(){
     rotateBackCounterClockwise()
 }
 
-function handleRotate(layer, count){
+export function handleRotate(layer, count){
     rotateLayer(layer, count)
     // console.log(count)
 

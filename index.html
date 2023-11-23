@@ -3,11 +3,13 @@
 <head>
     <title>Hello, Three.js!</title>
     <script type="module" src="./controller.js" defer></script>
+    <script type="module" src="./solver.js" defer></script>
     <script type="module" src="rubiks.js"></script>
 </head>
 <body>
     <button id="scramble">Scramble</button>
-    <div id="cube-container"></div>
+    <button id="findRed">Find Red</button>
+
     <table>
         <thead>
         <tr>
@@ -38,6 +40,28 @@
             <td><button id="rotate-bottom-button-c">Rotate Bottom Face</button></td>
             <td><button id="rotate-right-button-c">Rotate Right Face</button></td>
             <td><button id="rotate-back-button-c">Rotate Back Face</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="cube-container"></div>
+    <table>
+        <thead>
+        <tr>
+            <th>White Cross</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><button id="find-whitecross-red">Solve Red Piece</button></td>
+        </tr>
+        <tr>
+            <td><button id="find-whitecross-blue">Solve Blue Piece</button></td>
+        </tr>
+        <tr>
+            <td><button id="find-whitecross-orange">Solve Red Piece</button></td>
+        </tr>
+        <tr>
+            <td><button id="find-whitecross-green">Solve Green Piece</button></td>
         </tr>
         </tbody>
     </table>

@@ -3,12 +3,12 @@
 <head>
     <title>Hello, Three.js!</title>
     <script type="module" src="./controller.js" defer></script>
-    <script type="module" src="./solver.js" defer></script>
+    <script type="module" src="white_cross.js" defer></script>
+    <script type="module" src="white_corners.js" defer></script>
     <script type="module" src="rubiks.js"></script>
 </head>
 <body>
     <button id="scramble">Scramble</button>
-    <button id="findRed">Find Red</button>
 
     <table>
         <thead>
@@ -48,17 +48,21 @@
         <thead>
         <tr>
             <th>White Cross</th>
+            <th>White Corner</th>
         </tr>
+
         </thead>
         <tbody>
         <tr>
             <td><button id="find-whitecross-red">Solve Red Piece</button></td>
+            <td><button id="find-whitecorner-red">Solve Red Corner</button></td>
         </tr>
         <tr>
             <td><button id="find-whitecross-blue">Solve Blue Piece</button></td>
+            <td><button id="find-whitecorner-blue">Solve Blue Corner</button></td>
         </tr>
         <tr>
-            <td><button id="find-whitecross-orange">Solve Red Piece</button></td>
+            <td><button id="find-whitecross-orange">Solve Orange Piece</button></td>
         </tr>
         <tr>
             <td><button id="find-whitecross-green">Solve Green Piece</button></td>

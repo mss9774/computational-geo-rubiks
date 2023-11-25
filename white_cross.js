@@ -790,22 +790,38 @@ const findRed = document.getElementById('find-whitecross-red');
 findRed.addEventListener('click', () => {
     let m = whiteCrossRed();
     movesInterupter(m)
+    let n = whiteCrossRed();
+    movesInterupter(n);
+    let o = whiteCrossRed();
+    movesInterupter(o)
 });
 
 const findBlue = document.getElementById('find-whitecross-blue');
 findBlue.addEventListener('click', () => {
     let m = whiteCrossBlue();
     movesInterupter(m)
+    let n = whiteCrossBlue();
+    movesInterupter(n);
+    let o = whiteCrossBlue()
+    movesInterupter(o)
 });
 
 const findGreen = document.getElementById('find-whitecross-green');
 findGreen.addEventListener('click', () => {
     let m = whiteCrossGreen();
     movesInterupter(m)
+    let n = whiteCrossGreen();
+    movesInterupter(n);
+    let o = whiteCrossGreen();
+    movesInterupter(o)
 });
 
 const findOrange = document.getElementById('find-whitecross-orange');
 findOrange.addEventListener('click', () => {
     let m = whiteCrossOrange();
     movesInterupter(m)
+    let n = whiteCrossOrange();
+    movesInterupter(n);
+    let o = whiteCrossOrange();
+    movesInterupter(o)
 });

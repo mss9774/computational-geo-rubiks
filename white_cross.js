@@ -825,3 +825,34 @@ findOrange.addEventListener('click', () => {
     let o = whiteCrossOrange();
     movesInterupter(o)
 });
+
+const findWhiteCross = document.getElementById('solve-whitecross');
+findWhiteCross.addEventListener('click', () => {
+    let m = whiteCrossRed();
+    movesInterupter(m)
+    let n = whiteCrossRed();
+    movesInterupter(n);
+    let o = whiteCrossRed();
+    movesInterupter(o);
+
+    let p = whiteCrossBlue();
+    movesInterupter(p)
+    let q = whiteCrossBlue();
+    movesInterupter(q);
+    let r = whiteCrossBlue()
+    movesInterupter(r)
+
+    let s = whiteCrossGreen();
+    movesInterupter(s)
+    let t = whiteCrossGreen();
+    movesInterupter(t);
+    let u = whiteCrossGreen();
+    movesInterupter(u)
+
+    let v = whiteCrossOrange();
+    movesInterupter(v)
+    let w = whiteCrossOrange();
+    movesInterupter(w);
+    let x = whiteCrossOrange();
+    movesInterupter(x)
+});

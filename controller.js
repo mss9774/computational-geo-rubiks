@@ -402,6 +402,17 @@ function randomScramble(){
 
 }
 
+function getScrambleInput() {
+    let modal = document.getElementById("input-modal");
+    let modal_content = document.getElementsByClassName("modal-content")[0];
+    let close = document.getElementsByClassName("close")[0];
+    modal.style.display = "block";
+
+    close.onclick = () => { 
+        modal.style.display = "none";
+    }
+}
+
 
 
 
@@ -417,6 +428,11 @@ function randomScramble(){
 const scramble = document.getElementById('scramble');
 scramble.addEventListener('click', () => {
     randomScramble();
+});
+
+const input_scramble = document.getElementById('input-scramble');
+input_scramble.addEventListener('click', () => {
+    getScrambleInput();
 });
 
 

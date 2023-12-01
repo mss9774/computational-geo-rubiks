@@ -1,7 +1,7 @@
-
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+//import { cube } from './controller.js'
+ 
 const scene = new THREE.Scene();
 
 // Create a camera
@@ -17,11 +17,11 @@ renderer.setSize(window.innerWidth * scale, window.innerHeight * scale);
 
 const sceneContainer = document.getElementById('cube-container');
 sceneContainer.appendChild(renderer.domElement);
-//const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
-const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500];
+const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500, 0x808080];
 
 // Create materials for each face
 const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
@@ -54,6 +54,72 @@ for (let x = -1; x <= 1; x++) {
 
 scene.add(rubiksCube);
 renderer.render(scene, camera);
+
+function convertToColor(controllercolor) {
+    if (controllercolor === 'R') {
+        return materials[0];
+    }
+    else if (controllercolor === 'G') {
+        return materials[5];
+    }
+    else if (controllercolor === 'O') {
+        return materials[1];
+    }
+    else if (controllercolor === 'B') {
+        return materials[4];
+    }
+    else if (controllercolor === 'Y') {
+        return materials[2];
+    }
+    else if (controllercolor === 'W') {
+        return materials[3];
+    }
+    else {
+        return materials[6];
+    }
+}
+
+export function createCubeFromInput(cube) {
+    let inputRubiksCube = new THREE.Object3D();
+    for (let x =-1; x <=1; x++) {
+        for (let y =-1; y <=1; y++) {
+            for (let z = -1; z <= 1; z++) {
+                const cubeletSize = .75 + z *.1 + y*.1;
+                const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
+                let cubeletMaterials = [
+                    materials[6], materials[6], materials[6],
+                    materials[6], materials[6], materials[6]
+                ];
+                if (z == 1) {
+                    console.log(cube);
+                    console.log("Should be from the red side:" + cube[0][1 - y][x + 1]);
+                     cubeletMaterials[0] = convertToColor(cube[0][1 - y][x + 1]);
+                }
+                else if (z == -1) {
+                    cubeletMaterials[1] = convertToColor(cube[2][1 - y][x + 1]);
+                }
+                if (x == 1) {
+                    cubeletMaterials[5] = convertToColor(cube[1][1 - y][z + 1]);
+                }
+                if (x == -1) {
+                    cubeletMaterials[4] = convertToColor(cube[3][1 - y][z + 1]);
+                }
+                if (y == 1) {
+                    cubeletMaterials[2] = convertToColor(cube[4][1 - z][x + 1]);
+                }
+                if (y == -1) {
+                    cubeletMaterials[3] = convertToColor(cube[5][1 - z][x + 1]);
+                }
+                let cubelet = new THREE.Mesh(cubeletGeometry, cubeletMaterials);
+                cubelet.position.set(x, y, z);
+                inputRubiksCube.add(cubelet);
+            }
+        }
+    }
+    scene.remove(rubiksCube);
+    scene.add(inputRubiksCube);
+    renderer.render(scene, camera);
+}
 // Create an animation loop
 export function rotateLayer(layer, counter) {
     // Define the rotation angle (in radians) and the rotation axis

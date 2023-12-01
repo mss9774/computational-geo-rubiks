@@ -1,4 +1,4 @@
-import {rotateLayer} from './rubiks.js'
+import {rotateLayer, createCubeFromInput} from './rubiks.js'
 // import {func} from "three/addons/nodes/code/FunctionNode";
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
@@ -480,7 +480,9 @@ function getScrambleInput() {
         cube[5][2][2] = document.getElementById('white-bottom-right').value;
     }
 
-    close.onclick = () => { 
+    close.onclick = () => {
+        console.log(cube);
+        createCubeFromInput(cube); 
         modal.style.display = "none";
     }
 }

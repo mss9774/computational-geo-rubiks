@@ -405,23 +405,85 @@ function randomScramble(){
 function getScrambleInput() {
     let modal = document.getElementById("input-modal");
     let modal_content = document.getElementsByClassName("modal-content")[0];
+    let red_input_b = document.getElementById("redInput");
+    let green_input_b = document.getElementById("greenInput");
+    let orange_input_b = document.getElementById("orangeInput");
+    let blue_input_b = document.getElementById("blueInput");
+    let yellow_input_b = document.getElementById("yellowInput");
+    let white_input_b = document.getElementById("whiteInput");
     let close = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
+
+    red_input_b.onclick = () => {
+        cube[0][0][0] = document.getElementById("red-top-left").value;
+        cube[0][0][1] = document.getElementById('red-top-middle').value;
+        cube[0][0][2] = document.getElementById('red-top-middle').value;
+        cube[0][1][0] = document.getElementById("red-middle-left").value;
+        cube[0][1][2] = document.getElementById('red-middle-right').value;
+        cube[0][2][0] = document.getElementById("red-bottom-left").value;
+        cube[0][2][1] = document.getElementById('red-bottom-middle').value;
+        cube[0][2][2] = document.getElementById('red-bottom-right').value; 
+    }
+
+    green_input_b.onclick = () => { 
+        cube[1][0][0] = document.getElementById("green-top-left").value;
+        cube[1][0][1] = document.getElementById('green-top-middle').value;
+        cube[1][0][2] = document.getElementById('green-top-middle').value;
+        cube[1][1][0] = document.getElementById("green-middle-left").value;
+        cube[1][1][2] = document.getElementById('green-middle-right').value;
+        cube[1][2][0] = document.getElementById("green-bottom-left").value;
+        cube[1][2][1] = document.getElementById('green-bottom-middle').value;
+        cube[1][2][2] = document.getElementById('green-bottom-right').value;
+    }
+
+    orange_input_b.onclick = () => { 
+        cube[2][0][0] = document.getElementById("orange-top-left").value;
+        cube[2][0][1] = document.getElementById('orange-top-middle').value;
+        cube[2][0][2] = document.getElementById('orange-top-middle').value;
+        cube[2][1][0] = document.getElementById("orange-middle-left").value;
+        cube[2][1][2] = document.getElementById('orange-middle-right').value;
+        cube[2][2][0] = document.getElementById("orange-bottom-left").value;
+        cube[2][2][1] = document.getElementById('orange-bottom-middle').value;
+        cube[2][2][2] = document.getElementById('orange-bottom-right').value;
+    }
+
+    blue_input_b.onclick = () => { 
+        cube[3][0][0] = document.getElementById("blue-top-left").value;
+        cube[3][0][1] = document.getElementById('blue-top-middle').value;
+        cube[3][0][2] = document.getElementById('blue-top-middle').value;
+        cube[3][1][0] = document.getElementById("blue-middle-left").value;
+        cube[3][1][2] = document.getElementById('blue-middle-right').value;
+        cube[3][2][0] = document.getElementById("blue-bottom-left").value;
+        cube[3][2][1] = document.getElementById('blue-bottom-middle').value;
+        cube[3][2][2] = document.getElementById('blue-bottom-right').value;
+    }
+
+    yellow_input_b.onclick = () => { 
+        cube[4][0][0] = document.getElementById("yellow-top-left").value;
+        cube[4][0][1] = document.getElementById('yellow-top-middle').value;
+        cube[4][0][2] = document.getElementById('yellow-top-middle').value;
+        cube[4][1][0] = document.getElementById("yellow-middle-left").value;
+        cube[4][1][2] = document.getElementById('yellow-middle-right').value;
+        cube[4][2][0] = document.getElementById("yellow-bottom-left").value;
+        cube[4][2][1] = document.getElementById('yellow-bottom-middle').value;
+        cube[4][2][2] = document.getElementById('yellow-bottom-right').value;
+    }
+
+    white_input_b.onclick = () => { 
+        cube[5][0][0] = document.getElementById("white-top-left").value;
+        cube[5][0][1] = document.getElementById('white-top-middle').value;
+        cube[5][0][2] = document.getElementById('white-top-middle').value;
+        cube[5][1][0] = document.getElementById("white-middle-left").value;
+        cube[5][1][2] = document.getElementById('white-middle-right').value;
+        cube[5][2][0] = document.getElementById("white-bottom-left").value;
+        cube[5][2][1] = document.getElementById('white-bottom-middle').value;
+        cube[5][2][2] = document.getElementById('white-bottom-right').value;
+    }
 
     close.onclick = () => { 
         modal.style.display = "none";
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

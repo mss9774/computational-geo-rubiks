@@ -14,20 +14,102 @@
     <div id="input-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form id="inputField" role="form">
-                <input type="text" name="field00" size="3">
-                <input type="text" name="field01" size="3">
-                <input type="text" name="field02" size="3">
+            <form role="form">
+                <p>Input the colors of the cube on the red side.</p>
+                <input type="text" id="red-top-left" size="3"/>
+                <input type="text" id="red-top-middle" size="3"/>
+                <input type="text" id="red-top-right" size="3"/>
                 <br>
-                <input type="text" name="field10" size="3">
-                <input type="text" name="field11" size="3">
-                <input type="text" name="field12" size="3">
+                <input type="text" id="red-middle-left" size="3"/>
+                <p style="display: inline;">Red</p>
+                <input type="text" id="red-middle-right" size="3"/>
                 <br>
-                <input type="text" name="field20" size="3">
-                <input type="text" name="field21" size="3">
-                <input type="text" name="field22" size="3">
+                <input type="text" id="red-bottom-left" size="3"/>
+                <input type="text" id="red-bottom-middle" size="3"/>
+                <input type="text" id="red-bottom-right" size="3"/>
                 <br>
-                </form>
+                <input type="button" id="redInput"/>
+            </form>
+            <form role="form">
+                <p>Input the colors of the cube on the green side.</p>
+                <input type="text" id="green-top-left" size="3"/>
+                <input type="text" id="green-top-middle" size="3"/>
+                <input type="text" id="green-top-right" size="3"/>
+                <br>
+                <input type="text" id="green-middle-left" size="3"/>
+                <p style="display: inline;">Green</p>
+                <input type="text" id="green-middle-right" size="3"/>
+                <br>
+                <input type="text" id="green-bottom-left" size="3"/>
+                <input type="text" id="green-bottom-middle" size="3"/>
+                <input type="text" id="green-bottom-right" size="3"/>
+                <br>
+                <input type="button" id="greenInput"/>
+            </form>
+            <form role="form">
+                <p>Input the colors of the cube on the orange side.</p>
+                <input type="text" id="orange-top-left" size="3"/>
+                <input type="text" id="orange-top-middle" size="3"/>
+                <input type="text" id="orange-top-right" size="3"/>
+                <br>
+                <input type="text" id="orange-middle-left" size="3"/>
+                <p style="display: inline;">Orange</p>
+                <input type="text" id="orange-middle-right" size="3"/>
+                <br>
+                <input type="text" id="orange-bottom-left" size="3"/>
+                <input type="text" id="orange-bottom-middle" size="3"/>
+                <input type="text" id="orange-bottom-right" size="3"/>
+                <br>
+                <input type="button" id="orangeInput"/>
+            </form>
+            <form role="form">
+                <p>Input the colors of the cube on the blue side.</p>
+                <input type="text" id="blue-top-left" size="3"/>
+                <input type="text" id="blue-top-middle" size="3"/>
+                <input type="text" id="blue-top-right" size="3"/>
+                <br>
+                <input type="text" id="blue-middle-left" size="3"/>
+                <p style="display: inline;">Blue</p>
+                <input type="text" id="blue-middle-right" size="3"/>
+                <br>
+                <input type="text" id="blue-bottom-left" size="3"/>
+                <input type="text" id="blue-bottom-middle" size="3"/>
+                <input type="text" id="blue-bottom-right" size="3"/>
+                <br>
+                <input type="button" id="blueInput"/>
+            </form>
+            <form role="form">
+                <p>Input the colors of the cube on the yellow side.</p>
+                <input type="text" id="yellow-top-left" size="3"/>
+                <input type="text" id="yellow-top-middle" size="3"/>
+                <input type="text" id="yellow-top-right" size="3"/>
+                <br>
+                <input type="text" id="yellow-middle-left" size="3"/>
+                <p style="display: inline;">Yellow</p>
+                <input type="text" id="yellow-middle-right" size="3"/>
+                <br>
+                <input type="text" id="yellow-bottom-left" size="3"/>
+                <input type="text" id="yellow-bottom-middle" size="3"/>
+                <input type="text" id="yellow-bottom-right" size="3"/>
+                <br>
+                <input type="button" id="yellowInput"/>
+            </form>
+            <form role="form">
+                <p>Input the colors of the cube on the white side.</p>
+                <input type="text" id="white-top-left" size="3"/>
+                <input type="text" id="white-top-middle" size="3"/>
+                <input type="text" id="white-top-right" size="3"/>
+                <br>
+                <input type="text" id="white-middle-left" size="3"/>
+                <p style="display: inline;">White</p>
+                <input type="text" id="white-middle-right" size="3"/>
+                <br>
+                <input type="text" id="white-bottom-left" size="3"/>
+                <input type="text" id="white-bottom-middle" size="3"/>
+                <input type="text" id="white-bottom-right" size="3"/>
+                <br>
+                <input type="button" id="whiteInput"/>
+            </form>
         </div>
     </div>
 
@@ -126,6 +208,7 @@
         margin: 15% auto; /* 15% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
+        overflow: auto;
         width: 80%; /* Could be more or less, depending on screen size */
         height: 80%;
     }
@@ -143,6 +226,4 @@
         text-decoration: none;
         cursor: pointer;
     }
-
-
 </style>

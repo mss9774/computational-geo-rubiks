@@ -390,7 +390,6 @@ function randomScramble(){
     for (let i = 0; i < 40; i++) {
         const randomIndex = Math.floor(Math.random() * myArray.length);
         const conter = Math.floor(Math.random() * 2);
-        console.log(myArray[randomIndex], conter)
         if(conter === 1){
             handleRotate(myArray[randomIndex], true)
         } else  {
@@ -398,7 +397,7 @@ function randomScramble(){
         }
 
     }
-    console.log(cube)
+
 
 }
 
@@ -415,7 +414,9 @@ function getScrambleInput() {
 
 
 
+function getpoint(x,y,z){
 
+}
 
 
 

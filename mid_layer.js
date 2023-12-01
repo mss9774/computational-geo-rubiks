@@ -1,8 +1,6 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
 
-console.log("OH NO")
-console.log(cont.cube)
 
 //   4
 // 3 0 1 2
@@ -195,6 +193,332 @@ function redGreenMid(){
     return moves
 }
 
+
+
+//   4
+// 3 0 1 2
+//   5
+
+//   Y
+// B R G O
+//   W
+
+function greenOrangeMid(){
+    let m = lookAtMiddleEdges("G", "O")
+    let moves = []
+    if(m !== "X"){
+        if(!(m[0] === "G" && m[1] === "G")){
+            switch (m[0]){
+                case "B":
+                    moves.push("FN");
+                    moves.push("TC");
+                    moves.push("FC");
+                    moves.push("TC");
+                    moves.push("LC");
+                    moves.push("TN");
+                    moves.push("LN");
+                    break;
+                case "O":
+                    moves.push("LN");
+                    moves.push("TC");
+                    moves.push("LC");
+                    moves.push("TC");
+                    moves.push("BC");
+                    moves.push("TN");
+                    moves.push("BN");
+                    break;
+                case "G":
+                    moves.push("BN");
+                    moves.push("TC");
+                    moves.push("BC");
+                    moves.push("TC");
+                    moves.push("RC");
+                    moves.push("TN");
+                    moves.push("RN");
+                    break;
+                case "R":
+                    moves.push("RN");
+                    moves.push("TC");
+                    moves.push("RC");
+                    moves.push("TC");
+                    moves.push("FC");
+                    moves.push("TN");
+                    moves.push("FN");
+                    break;
+
+            }
+        }
+
+    }
+    m = lookAtYellowEdges("G", "O")
+    if(m !== "X") {
+        switch (m[2]){
+            case "O":
+                switch (m[3]) {
+                    case "B":
+                        moves.push("TN");
+                        break;
+                    case "R":
+                        moves.push("TC");
+                        moves.push("TC");
+                        break;
+                    case "G":
+                        moves.push("TC");
+                        break;
+                    case "O":
+                        break;
+                }
+                moves.push("TC")
+                moves.push("RC");
+                moves.push("TN");
+                moves.push("RN");
+                moves.push("TN");
+                moves.push("BN");
+                moves.push("TC");
+                moves.push("BC");
+                break;
+            case "G":
+                switch (m[3]) {
+                    case "B":
+                        moves.push("TC");
+                        moves.push("TC");
+                        break;
+                    case "R":
+                        moves.push("TC");
+                        break;
+                    case "G":
+                        break;
+                    case "O":
+                        moves.push("TN");
+                        break;
+                }
+                moves.push("TN");
+                moves.push("BN");
+                moves.push("TC");
+                moves.push("BC");
+                moves.push("TC");
+                moves.push("RC");
+                moves.push("TN");
+                moves.push("RN");
+                break;
+
+        }
+    }
+    console.log(moves);
+    return moves
+}
+
+
+function orangeBlueMid(){
+    let m = lookAtMiddleEdges("O", "B")
+    let moves = []
+    if(m !== "X"){
+        if(!(m[0] === "O" && m[1] === "O")){
+            switch (m[0]){
+                case "B":
+                    moves.push("FN");
+                    moves.push("TC");
+                    moves.push("FC");
+                    moves.push("TC");
+                    moves.push("LC");
+                    moves.push("TN");
+                    moves.push("LN");
+                    break;
+                case "O":
+                    moves.push("LN");
+                    moves.push("TC");
+                    moves.push("LC");
+                    moves.push("TC");
+                    moves.push("BC");
+                    moves.push("TN");
+                    moves.push("BN");
+                    break;
+                case "G":
+                    moves.push("BN");
+                    moves.push("TC");
+                    moves.push("BC");
+                    moves.push("TC");
+                    moves.push("RC");
+                    moves.push("TN");
+                    moves.push("RN");
+                    break;
+                case "R":
+                    moves.push("RN");
+                    moves.push("TC");
+                    moves.push("RC");
+                    moves.push("TC");
+                    moves.push("FC");
+                    moves.push("TN");
+                    moves.push("FN");
+                    break;
+
+            }
+        }
+
+    }
+    m = lookAtYellowEdges("O", "B")
+    if(m !== "X") {
+        switch (m[2]){
+            case "B":
+                switch (m[3]) {
+                    case "R":
+                        moves.push("TN");
+                        break;
+                    case "G":
+                        moves.push("TC");
+                        moves.push("TC");
+                        break;
+                    case "O":
+                        moves.push("TC");
+                        break;
+                    case "B":
+                        break;
+                }
+                moves.push("TC")
+                moves.push("BC");
+                moves.push("TN");
+                moves.push("BN");
+                moves.push("TN");
+                moves.push("LN");
+                moves.push("TC");
+                moves.push("LC");
+                break;
+            case "O":
+                switch (m[3]) {
+                    case "R":
+                        moves.push("TC");
+                        moves.push("TC");
+                        break;
+                    case "G":
+                        moves.push("TC");
+                        break;
+                    case "O":
+                        break;
+                    case "B":
+                        moves.push("TN");
+                        break;
+                }
+                moves.push("TN");
+                moves.push("LN");
+                moves.push("TC");
+                moves.push("LC");
+                moves.push("TC");
+                moves.push("BC");
+                moves.push("TN");
+                moves.push("BN");
+                break;
+
+        }
+    }
+    console.log(moves);
+    return moves
+}
+
+function blueRedMid(){
+    let m = lookAtMiddleEdges("B", "R")
+    let moves = []
+    if(m !== "X"){
+        if(!(m[0] === "B" && m[1] === "B")){
+            switch (m[0]){
+                case "B":
+                    moves.push("FN");
+                    moves.push("TC");
+                    moves.push("FC");
+                    moves.push("TC");
+                    moves.push("LC");
+                    moves.push("TN");
+                    moves.push("LN");
+                    break;
+                case "O":
+                    moves.push("LN");
+                    moves.push("TC");
+                    moves.push("LC");
+                    moves.push("TC");
+                    moves.push("BC");
+                    moves.push("TN");
+                    moves.push("BN");
+                    break;
+                case "G":
+                    moves.push("BN");
+                    moves.push("TC");
+                    moves.push("BC");
+                    moves.push("TC");
+                    moves.push("RC");
+                    moves.push("TN");
+                    moves.push("RN");
+                    break;
+                case "R":
+                    moves.push("RN");
+                    moves.push("TC");
+                    moves.push("RC");
+                    moves.push("TC");
+                    moves.push("FC");
+                    moves.push("TN");
+                    moves.push("FN");
+                    break;
+
+            }
+        }
+
+    }
+    m = lookAtYellowEdges("B", "R")
+    if(m !== "X") {
+        switch (m[2]){
+            case "R":
+                switch (m[3]) {
+                    case "G":
+                        moves.push("TN");
+                        break;
+                    case "O":
+                        moves.push("TC");
+                        moves.push("TC");
+                        break;
+                    case "B":
+                        moves.push("TC");
+                        break;
+                    case "R":
+                        break;
+                }
+                moves.push("TC")
+                moves.push("LC");
+                moves.push("TN");
+                moves.push("LN");
+                moves.push("TN");
+                moves.push("FN");
+                moves.push("TC");
+                moves.push("FC");
+                break;
+            case "B":
+                switch (m[3]) {
+                    case "G":
+                        moves.push("TC");
+                        moves.push("TC");
+                        break;
+                    case "O":
+                        moves.push("TC");
+                        break;
+                    case "B":
+                        break;
+                    case "R":
+                        moves.push("TN");
+                        break;
+                }
+                moves.push("TN");
+                moves.push("FN");
+                moves.push("TC");
+                moves.push("FC");
+                moves.push("TC");
+                moves.push("LC");
+                moves.push("TN");
+                moves.push("LN");
+                break;
+
+        }
+    }
+    console.log(moves);
+    return moves
+}
+
 function movesInterupter(movelist){
     movelist.forEach((element) => {
         switch (element[0]) {
@@ -246,4 +570,52 @@ findRed.addEventListener('click', () => {
     movesInterupter(m)
     let n = redGreenMid();
     movesInterupter(n);
+});
+
+const findBlue = document.getElementById('find-mid-blueRed');
+findBlue.addEventListener('click', () => {
+    let m = blueRedMid();
+    movesInterupter(m)
+    let n = blueRedMid();
+    movesInterupter(n);
+});
+
+const findOrange = document.getElementById('find-mid-orangeBlue');
+findOrange.addEventListener('click', () => {
+    let m = orangeBlueMid();
+    movesInterupter(m)
+    let n = orangeBlueMid();
+    movesInterupter(n);
+});
+
+const findGreen = document.getElementById('find-mid-greenOrange');
+findGreen.addEventListener('click', () => {
+    let m = greenOrangeMid();
+    movesInterupter(m)
+    let n = greenOrangeMid();
+    movesInterupter(n);
+});
+
+const findMid = document.getElementById('solve-midLayer');
+findMid.addEventListener('click', () => {
+    let m = redGreenMid();
+    movesInterupter(m)
+    let n = redGreenMid();
+    movesInterupter(n);
+
+    let o = blueRedMid();
+    movesInterupter(o)
+    let p = blueRedMid();
+    movesInterupter(p);
+
+    let q = orangeBlueMid();
+    movesInterupter(q)
+    let r = orangeBlueMid();
+    movesInterupter(r);
+
+
+    let s = greenOrangeMid();
+    movesInterupter(s)
+    let t = greenOrangeMid();
+    movesInterupter(t);
 });

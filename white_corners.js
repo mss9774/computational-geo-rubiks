@@ -14,6 +14,13 @@ function lookAtWhiteCorners(val, val2){
     let whiteside = cube[5][0][2];
     let leftside = cube[0][2][2];
     let rightside = cube[1][2][0];
+    //   4
+    // 3 0 1 2
+    //   5
+
+    //   Y
+    // B R G O
+    //   W
 
     if(whiteside === "W" && leftside === val && rightside === val2){
         return "WWR"+val+"G"+val2;
@@ -33,6 +40,14 @@ function lookAtWhiteCorners(val, val2){
     leftside = cube[1][2][2];
     rightside = cube[2][2][0];
 
+    //   4
+    // 3 0 1 2
+    //   5
+
+    //   Y
+    // B R G O
+    //   W
+
     if(whiteside === "W" && leftside === val && rightside === val2){
         return "WWG"+val+"O"+val2;
     }else if(whiteside === "W" && leftside === val2 && rightside === val) {
@@ -50,6 +65,13 @@ function lookAtWhiteCorners(val, val2){
     whiteside = cube[5][2][0];
     leftside = cube[2][2][2];
     rightside = cube[3][2][0];
+    //   4
+    // 3 0 1 2
+    //   5
+
+    //   Y
+    // B R G O
+    //   W
 
     if(whiteside === "W" && leftside === val && rightside === val2){
         return "WWO"+val+"B"+val2;
@@ -67,7 +89,7 @@ function lookAtWhiteCorners(val, val2){
 
     whiteside = cube[5][0][0];
     leftside = cube[3][2][2];
-    rightside = cube[2][2][0];
+    rightside = cube[0][2][0];
 
     if(whiteside === "W" && leftside === val && rightside === val2){
         return "WWB"+val+"R"+val2;
@@ -170,7 +192,6 @@ function lookAtYellowCorners(val, val2){
 
 function whiteCornerRed(){
     let m = lookAtWhiteCorners("B", "R");
-    console.log("WHAT")
     console.log(m)
     let moves = []
     if(m[0] !== "X"){
@@ -198,22 +219,22 @@ function whiteCornerRed(){
             switch (m[2]){
                 case "O":
                     moves.push("BC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("BN");
                     break;
                 case "G":
                     moves.push("RC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("RN");
                     break;
                 case "R":
                     moves.push("FC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("FN");
                     break;
                 case "B":
                     moves.push("LC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("LN");
                     break;
             }
@@ -249,24 +270,29 @@ function whiteCornerRed(){
         if(m[1] === "W"){
             switch (m[2]){
                 case "O":
-                    moves.push("TN");
-                    moves.push("TN");
+                    moves.push("TC");
                     break;
                 case "G":
                     moves.push("TN");
+                    moves.push("TN");
                     break;
                 case "R":
+                    moves.push("TN");
                     break;
                 case "B":
-                    moves.push("TC");
                     break;
             }
-            moves.push("RN");
-            moves.push("LC");
-            moves.push("TN");
-            moves.push("TN");
-            moves.push("RC");
-            moves.push("LN");
+            moves.push("FN");
+            moves.push("TC");
+            moves.push("FC");
+
+
+            // moves.push("RN");
+            // moves.push("LC");
+            // moves.push("TN");
+            // moves.push("TN");
+            // moves.push("RC");
+            // moves.push("LN");
         } else if (m[3] === "W"){
             switch (m[2]){
                 case "O":
@@ -340,22 +366,22 @@ function whiteCornerBlue(){
             switch (m[2]){
                 case "O":
                     moves.push("BC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("BN");
                     break;
                 case "G":
                     moves.push("RC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("RN");
                     break;
                 case "R":
                     moves.push("FC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("FN");
                     break;
                 case "B":
                     moves.push("LC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("LN");
                     break;
             }
@@ -391,24 +417,29 @@ function whiteCornerBlue(){
         if(m[1] === "W"){
             switch (m[2]){
                 case "O":
-                    moves.push("TN");
                     break;
                 case "G":
-                    moves.push("TN");
-                    moves.push("TN");
+                    moves.push("TC");
                     break;
                 case "R":
                     moves.push("TC");
+                    moves.push("TC");
+
                     break;
                 case "B":
+                    moves.push("TN");
+
                     break;
             }
-            moves.push("FN");
-            moves.push("BC");
-            moves.push("TN");
-            moves.push("TN");
-            moves.push("FC");
-            moves.push("BN");
+            moves.push("LN");
+            moves.push("TC");
+            moves.push("LC");
+            // moves.push("FN");
+            // moves.push("BC");
+            // moves.push("TN");
+            // moves.push("TN");
+            // moves.push("FC");
+            // moves.push("BN");
         } else if (m[3] === "W"){
             switch (m[2]){
                 case "O":
@@ -481,17 +512,17 @@ function whiteCornerOrange(){
             switch (m[2]){
                 case "O":
                     moves.push("BC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("BN");
                     break;
                 case "G":
                     moves.push("RC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("RN");
                     break;
                 case "R":
                     moves.push("FC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("FN");
                     break;
                 case "B":
@@ -533,23 +564,26 @@ function whiteCornerOrange(){
             switch (m[2]){
                 case "O":
                     moves.push("TN");
-                    moves.push("TN");
                     break;
                 case "G":
-                    moves.push("TC");
                     break;
                 case "R":
+                    moves.push("TC");
                     break;
                 case "B":
                     moves.push("TN");
+                    moves.push("TN");
                     break;
             }
-            moves.push("FC");
             moves.push("BN");
-            moves.push("TN");
-            moves.push("TN");
+            moves.push("TC");
             moves.push("BC");
-            moves.push("FN");
+            // moves.push("FC");
+            // moves.push("BN");
+            // moves.push("TN");
+            // moves.push("TN");
+            // moves.push("BC");
+            // moves.push("FN");
         } else if (m[3] === "W"){
             switch (m[2]){
                 case "O":
@@ -583,9 +617,9 @@ function whiteCornerOrange(){
                     moves.push("TN");
                     break;
             }
-            moves.push("RN");
-            moves.push("TN");
             moves.push("RC");
+            moves.push("TN");
+            moves.push("RN");
         }
     }
     console.log(moves)
@@ -621,22 +655,22 @@ function whiteCornerGreen(){
             switch (m[2]){
                 case "O":
                     moves.push("BC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("BN");
                     break;
                 case "G":
                     moves.push("RC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("RN");
                     break;
                 case "R":
                     moves.push("FC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("FN");
                     break;
                 case "B":
                     moves.push("LC");
-                    moves.push("TN");
+                    moves.push("TC");
                     moves.push("LN");
                     break;
             }
@@ -673,23 +707,26 @@ function whiteCornerGreen(){
             switch (m[2]){
                 case "O":
                     moves.push("TN");
+                    moves.push("TN");
                     break;
                 case "G":
+                    moves.push("TN");
                     break;
                 case "R":
-                    moves.push("TC");
                     break;
                 case "B":
-                    moves.push("TN");
-                    moves.push("TN");
+                    moves.push("TC");
                     break;
             }
-            moves.push("BN");
-            moves.push("FC");
-            moves.push("TN");
-            moves.push("TN");
-            moves.push("BC");
-            moves.push("FN");
+            moves.push("RN");
+            moves.push("TC");
+            moves.push("RC");
+            // moves.push("BN");
+            // moves.push("FC");
+            // moves.push("TN");
+            // moves.push("TN");
+            // moves.push("BC");
+            // moves.push("FN");
         } else if (m[3] === "W"){
             switch (m[2]){
                 case "O":

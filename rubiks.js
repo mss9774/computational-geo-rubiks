@@ -1,5 +1,5 @@
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 //import { cube } from './controller.js'
  
 const scene = new THREE.Scene();
@@ -17,7 +17,7 @@ renderer.setSize(window.innerWidth * scale, window.innerHeight * scale);
 
 const sceneContainer = document.getElementById('cube-container');
 sceneContainer.appendChild(renderer.domElement);
-const controls = new OrbitControls(camera, renderer.domElement);
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
@@ -30,7 +30,7 @@ const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
 // Create a function to create a single cubelet
 function createCubelet(x, y, z) {
     //const cubeletSize = .97;
-    const cubeletSize = .85 + x *.1
+    const cubeletSize = .85 +y *.1
     const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
     const cubeletMaterials = [
         materials[0], materials[1], materials[2], // Front, Back, Top

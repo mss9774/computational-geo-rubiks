@@ -96,14 +96,14 @@ function yellowCornerRed(){
     if(m !== "X"){
         switch(m[2]){
             case "B":
-                moves.push("RN")
+                moves.push("FN")
                 moves.push("TC")
-                moves.push("LC")
+                moves.push("BC")
                 moves.push("TN")
-                moves.push("RC")
+                moves.push("FC")
                 moves.push("TC")
-                moves.push("LN")
-                moves.push("TN")
+                moves.push("BN")
+                moves.push("TC")
 
                 // moves.push("RN")
                 // moves.push("TC")
@@ -148,6 +148,7 @@ function otherCorners(){
 
     switch (m[2]){
         case "O":
+            //U R U' L' U R' U' L
             moves.push("TN")
             moves.push("RN")
             moves.push("TC")
@@ -216,6 +217,230 @@ function movesInterupter(movelist){
     });
 }
 
+function solveTop(){
+    let m = lookAtYellowCorners("B", "R");
+    let moves = []
+    let tot = 0
+    //R' D' R D
+    if(m[1] !== "Y"){
+        if(m[3] === "Y"){
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }else{
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }
+    }
+
+    m = lookAtYellowCorners("R", "G");
+
+    //R' D' R D
+    if(m[1] !== "Y"){
+        moves.push("TN")
+        tot += 1;
+        if(m[3] === "Y"){
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }else{
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }
+    }
+
+    m = lookAtYellowCorners("G", "O");
+
+    //R' D' R D
+    if(m[1] !== "Y"){
+        if(tot !== 1){
+            moves.push("TN");
+            tot += 1
+        }
+        moves.push("TN");
+        tot += 1
+        if(m[3] === "Y"){
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }else{
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }
+    }
+
+    m = lookAtYellowCorners("O", "B");
+
+    //R' D' R D
+    if(m[1] !== "Y"){
+        if(tot === 1){
+            moves.push("TN")
+        } else if (tot === 0) {
+            moves.push("TN")
+            moves.push("TN")
+        }
+        moves.push("TN")
+        if(m[3] === "Y"){
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }else{
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+
+            moves.push("FC")
+            moves.push("DC")
+            moves.push("FN")
+            moves.push("DN")
+        }
+    }
+    return moves
+}
+
+function cleanCube(){
+    let m = lookAtYellowEdges("R")
+    console.log(m)
+    let moves = []
+    switch (m[3]) {
+        case "G":
+            moves.push("TN")
+            console.log("DONE")
+            break
+        case "B":
+            moves.push("TC")
+            console.log("DONE")
+            break
+        case "O":
+            moves.push("TN");
+            moves.push("TN");
+            console.log("DONE");
+            break;
+        case "R":
+            console.log("DONE");
+            break;
+
+    }
+    return moves;
+}
+
+function lookAtYellowEdges(val){
+    let oneside = cube[4][2][1];
+    let oppside = cube[0][0][1];
+    if(oneside === "Y" && oppside === val)
+        return "YY"+val+"R";
+    else if(oppside === "Y" && oneside === val)
+        return "Y"+val+"YR";
+
+    oneside = cube[4][1][2];
+    oppside = cube[1][0][1];
+    if(oneside === "Y" && oppside === val)
+        return "YY"+val+"G";
+    else if(oppside === "Y" && oneside === val)
+        return "Y"+val+"YG";
+
+    oneside = cube[4][0][1];
+    oppside = cube[2][0][1];
+    if(oneside === "Y" && oppside === val)
+        return "YY"+val+"O";
+    else if(oppside === "Y" && oneside === val)
+        return "Y"+val+"YO";
+
+    oneside = cube[4][1][0];
+    oppside = cube[3][0][1];
+    if(oneside === "Y" && oppside === val)
+        return "YY"+val+"B";
+    else if(oppside === "Y" && oneside === val)
+        return "Y"+val+"YB";
+    return "X";
+}
+
 const yellowSides = document.getElementById('solve-yellowcorner');
 yellowSides.addEventListener('click', () => {
     console.log([...cont.cube])
@@ -223,4 +448,15 @@ yellowSides.addEventListener('click', () => {
     movesInterupter(m)
     let n = otherCorners();
     movesInterupter(n);
+});
+
+const cubeFin = document.getElementById('solve-cube');
+cubeFin.addEventListener('click', () => {
+    console.log([...cont.cube])
+    let m = solveTop();
+    movesInterupter(m)
+    let n = cleanCube();
+    console.log(n)
+    movesInterupter(n)
+
 });

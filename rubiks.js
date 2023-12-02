@@ -21,7 +21,7 @@ sceneContainer.appendChild(renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
-const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500, 0x808080];
+const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500, 0x808080, 0x000000];
 
 // Create materials for each face
 const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
@@ -56,16 +56,16 @@ scene.add(rubiksCube);
 renderer.render(scene, camera);
 
 function convertToColor(controllercolor) {
-    if (controllercolor === 'R') {
+    if (controllercolor === 'G') {
         return materials[0];
     }
-    else if (controllercolor === 'G') {
+    else if (controllercolor === 'O') {
         return materials[5];
     }
-    else if (controllercolor === 'O') {
+    else if (controllercolor === 'B') {
         return materials[1];
     }
-    else if (controllercolor === 'B') {
+    else if (controllercolor === 'R') {
         return materials[4];
     }
     else if (controllercolor === 'Y') {
@@ -80,9 +80,9 @@ function convertToColor(controllercolor) {
 }
 
 export function createCubeFromInput(cube) {
-    let inputRubiksCube = new THREE.Object3D();
-    for (let x =-1; x <=1; x++) {
-        for (let y =-1; y <=1; y++) {
+    rubiksCube.clear();
+    for (let x = -1; x <= 1; x++) {
+        for (let y = -1; y <= 1; y++) {
             for (let z = -1; z <= 1; z++) {
                 const cubeletSize = .75 + z *.1 + y*.1;
                 const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
@@ -90,38 +90,40 @@ export function createCubeFromInput(cube) {
                     materials[6], materials[6], materials[6],
                     materials[6], materials[6], materials[6]
                 ];
-                if (z == 1) {
-                    console.log(cube);
-                    console.log("Should be from the red side:" + cube[0][1 - y][x + 1]);
-                     cubeletMaterials[0] = convertToColor(cube[0][1 - y][x + 1]);
+                if (z === 1) {
+                    //cubeletMaterials[0] = convertToColor(cube[0][1 - y][x + 1]);
+                    cubeletMaterials[4] = convertToColor(cube[0][1 - y][x + 1]);
                 }
-                else if (z == -1) {
-                    cubeletMaterials[1] = convertToColor(cube[2][1 - y][x + 1]);
+                else if (z === -1) {
+                    //cubeletMaterials[1] = convertToColor(cube[2][1 - y][x + 1]);
+                    cubeletMaterials[5] = convertToColor(cube[2][1 - y][1 - x]);
                 }
-                if (x == 1) {
-                    cubeletMaterials[5] = convertToColor(cube[1][1 - y][z + 1]);
+                if (x === 1) {
+                    //cubeletMaterials[5] = convertToColor(cube[1][1 - y][z + 1]);
+                    cubeletMaterials[0] = convertToColor(cube[1][1 - y][1 - z]);
                 }
-                if (x == -1) {
-                    cubeletMaterials[4] = convertToColor(cube[3][1 - y][z + 1]);
+                if (x === -1) {
+                    //cubeletMaterials[4] = convertToColor(cube[3][1 - y][z + 1]);
+                    cubeletMaterials[1] = convertToColor(cube[3][1 - y][z + 1]);
                 }
-                if (y == 1) {
+                if (y === 1) {
                     cubeletMaterials[2] = convertToColor(cube[4][1 - z][x + 1]);
                 }
-                if (y == -1) {
+                if (y === -1) {
                     cubeletMaterials[3] = convertToColor(cube[5][1 - z][x + 1]);
                 }
+                //cubeletMaterials[4] = materials[7];
                 let cubelet = new THREE.Mesh(cubeletGeometry, cubeletMaterials);
                 cubelet.position.set(x, y, z);
-                inputRubiksCube.add(cubelet);
+                rubiksCube.add(cubelet);
             }
         }
     }
-    scene.remove(rubiksCube);
-    scene.add(inputRubiksCube);
     renderer.render(scene, camera);
 }
 // Create an animation loop
 export function rotateLayer(layer, counter) {
+    console.log(layer);
     // Define the rotation angle (in radians) and the rotation axis
     let axis = new THREE.Vector3();
     switch (layer) {

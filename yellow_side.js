@@ -103,7 +103,7 @@ function yellowCornerRed(){
                 moves.push("FC")
                 moves.push("TC")
                 moves.push("BN")
-                moves.push("TC")
+                moves.push("TN")
 
                 // moves.push("RN")
                 // moves.push("TC")

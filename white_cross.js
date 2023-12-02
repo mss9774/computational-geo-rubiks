@@ -1,8 +1,6 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
 
-console.log("OH NO")
-console.log(cont.cube)
 
 //   4
 // 3 0 1 2
@@ -122,9 +120,9 @@ function lookAtMiddleEdges(val){
 
 function whiteCrossBlue() {
     let moves = []
-    let v = lookAtWhiteEdges("B")
+    let v = lookAtWhiteEdges("B");
+    console.log("v")
     if(v[0] !== "X"){
-        console.log(v)
         if(v[1] === "W"){
             switch (v[3]){
                 case "G":
@@ -148,7 +146,6 @@ function whiteCrossBlue() {
                     moves.push("LN")
                     break;
                 case "B":
-                    console.log("It's Perfect")
                     break;
 
             }
@@ -170,6 +167,7 @@ function whiteCrossBlue() {
         }
     }
     v = lookAtMiddleEdges("B")
+    console.log("v")
     if(v[0] !== "X") {
         if(v[0] === "O"){
             if(v[1] === "W"){
@@ -185,6 +183,7 @@ function whiteCrossBlue() {
             if(v[1] === "W"){
                 moves.push("FN");
                 moves.push("TN");
+                moves.push("FC");
                 moves.push("LC");
                 moves.push("LC");
             } else {
@@ -217,9 +216,10 @@ function whiteCrossBlue() {
             moves.push("LC");
             moves.push("LC");
         }
-        console.log(v);
+
     }
     v = lookAtYellowEdges("B");
+    console.log("v")
     if(v[0] !== "X") {
         if(v[1] === "W"){
             switch (v[3]){
@@ -265,8 +265,6 @@ function whiteCrossBlue() {
             }
         }
 
-    } else {
-        console.log("This Happens");
     }
 
 
@@ -278,7 +276,6 @@ function whiteCrossRed() {
     let moves = []
     let v = lookAtWhiteEdges("R")
     if(v[0] !== "X"){
-        console.log(v)
         if(v[1] === "W"){
             switch (v[3]){
                 case "O":
@@ -302,7 +299,6 @@ function whiteCrossRed() {
                     moves.push("FN")
                     break;
                 case "R":
-                    console.log("It's Perfect")
                     break;
 
             }
@@ -340,6 +336,7 @@ function whiteCrossRed() {
             if(v[1] === "W"){
                 moves.push("RN");
                 moves.push("TN");
+                moves.push("RC");
                 moves.push("FC");
                 moves.push("FC");
             } else {
@@ -372,7 +369,6 @@ function whiteCrossRed() {
             moves.push("FC");
             moves.push("FC");
         }
-        console.log(v);
     }
     v = lookAtYellowEdges("R");
     if(v[0] !== "X") {
@@ -420,10 +416,7 @@ function whiteCrossRed() {
             }
         }
 
-    } else {
-        console.log("This Happens");
     }
-
 
 
     console.log(moves);
@@ -434,7 +427,6 @@ function whiteCrossOrange() {
     let moves = []
     let v = lookAtWhiteEdges("O")
     if(v[0] !== "X"){
-        console.log(v)
         if(v[1] === "W"){
             switch (v[3]){
                 case "R":
@@ -458,7 +450,6 @@ function whiteCrossOrange() {
                     moves.push("BN")
                     break;
                 case "O":
-                    console.log("It's Perfect")
                     break;
 
             }
@@ -495,6 +486,7 @@ function whiteCrossOrange() {
             if(v[1] === "W"){
                 moves.push("LN");
                 moves.push("TN");
+                moves.push("LC");
                 moves.push("BC");
                 moves.push("BC");
             } else {
@@ -527,7 +519,6 @@ function whiteCrossOrange() {
             moves.push("BC");
             moves.push("BC");
         }
-        console.log(v);
     }
     v = lookAtYellowEdges("O");
     if(v[0] !== "X") {
@@ -575,8 +566,6 @@ function whiteCrossOrange() {
             }
         }
 
-    } else {
-        console.log("This Happens");
     }
 
     console.log(moves);
@@ -588,7 +577,6 @@ function whiteCrossGreen() {
     let moves = []
     let v = lookAtWhiteEdges("G")
     if(v[0] !== "X"){
-        console.log(v)
         if(v[1] === "W"){
             switch (v[3]){
                 case "B":
@@ -612,7 +600,6 @@ function whiteCrossGreen() {
                     moves.push("RN")
                     break;
                 case "G":
-                    console.log("It's Perfect")
                     break;
 
             }
@@ -650,6 +637,7 @@ function whiteCrossGreen() {
             if(v[1] === "W"){
                 moves.push("BN");
                 moves.push("TN");
+                moves.push("BC");
                 moves.push("RC");
                 moves.push("RC");
             } else {
@@ -682,7 +670,6 @@ function whiteCrossGreen() {
             moves.push("RC");
             moves.push("RC");
         }
-        console.log(v);
     }
     v = lookAtYellowEdges("G");
     if(v[0] !== "X") {
@@ -730,11 +717,7 @@ function whiteCrossGreen() {
             }
         }
 
-    } else {
-        console.log("This Happens");
     }
-
-
 
 
     console.log(moves);

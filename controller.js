@@ -422,10 +422,10 @@ function getScrambleInput() {
         cube[0][1][2] = document.getElementById('red-middle-right').value;
         cube[0][2][0] = document.getElementById("red-bottom-left").value;
         cube[0][2][1] = document.getElementById('red-bottom-middle').value;
-        cube[0][2][2] = document.getElementById('red-bottom-right').value; 
+        cube[0][2][2] = document.getElementById('red-bottom-right').value;
     }
 
-    green_input_b.onclick = () => { 
+    green_input_b.onclick = () => {
         cube[1][0][0] = document.getElementById("green-top-left").value;
         cube[1][0][1] = document.getElementById('green-top-middle').value;
         cube[1][0][2] = document.getElementById('green-top-right').value;
@@ -436,7 +436,7 @@ function getScrambleInput() {
         cube[1][2][2] = document.getElementById('green-bottom-right').value;
     }
 
-    orange_input_b.onclick = () => { 
+    orange_input_b.onclick = () => {
         cube[2][0][0] = document.getElementById("orange-top-left").value;
         cube[2][0][1] = document.getElementById('orange-top-middle').value;
         cube[2][0][2] = document.getElementById('orange-top-right').value;
@@ -447,7 +447,7 @@ function getScrambleInput() {
         cube[2][2][2] = document.getElementById('orange-bottom-right').value;
     }
 
-    blue_input_b.onclick = () => { 
+    blue_input_b.onclick = () => {
         cube[3][0][0] = document.getElementById("blue-top-left").value;
         cube[3][0][1] = document.getElementById('blue-top-middle').value;
         cube[3][0][2] = document.getElementById('blue-top-right').value;
@@ -458,7 +458,7 @@ function getScrambleInput() {
         cube[3][2][2] = document.getElementById('blue-bottom-right').value;
     }
 
-    yellow_input_b.onclick = () => { 
+    yellow_input_b.onclick = () => {
         cube[4][0][0] = document.getElementById("yellow-top-left").value;
         cube[4][0][1] = document.getElementById('yellow-top-middle').value;
         cube[4][0][2] = document.getElementById('yellow-top-right').value;
@@ -469,7 +469,7 @@ function getScrambleInput() {
         cube[4][2][2] = document.getElementById('yellow-bottom-right').value;
     }
 
-    white_input_b.onclick = () => { 
+    white_input_b.onclick = () => {
         cube[5][0][0] = document.getElementById("white-top-left").value;
         cube[5][0][1] = document.getElementById('white-top-middle').value;
         cube[5][0][2] = document.getElementById('white-top-right').value;
@@ -482,7 +482,7 @@ function getScrambleInput() {
 
     close.onclick = () => {
         console.log(cube);
-        createCubeFromInput(cube); 
+        createCubeFromInput(cube);
         modal.style.display = "none";
     }
 }

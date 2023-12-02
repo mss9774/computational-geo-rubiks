@@ -1,6 +1,5 @@
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
 // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-//import { cube } from './controller.js'
  
 const scene = new THREE.Scene();
 
@@ -21,7 +20,7 @@ sceneContainer.appendChild(renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
-const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500, 0x808080, 0x000000];
+const colors = [0x00ff00, 0x0000ff, 0xffff00, 0xffffff, 0xff0000, 0xffa500, 0x808080];
 
 // Create materials for each face
 const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));

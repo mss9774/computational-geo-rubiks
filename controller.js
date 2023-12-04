@@ -1,12 +1,12 @@
-import {rotateLayer, createCubeFromInput} from './rubiks.js'
+import { rotateLayer, createCubeFromInput } from './rubiks.js'
 // import {func} from "three/addons/nodes/code/FunctionNode";
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
 export const cube = [
     // Define the six faces of the cube
-//   4
-// 3 0 1 2
-//   5
+    //   4
+    // 3 0 1 2
+    //   5
     // 0 = RED
     // 1 = GREEN
     // 2 = ORANGE
@@ -116,10 +116,10 @@ function replaceColumn(matrixA, matrixB, columnToReplace, columnFromMatrixB, rev
         for (let col = 0; col < 3; col++) {
             if (col === columnToReplace) {
                 // Replace the specified column with the corresponding column from matrixB
-                if(!reverse){
+                if (!reverse) {
                     resultMatrix[row][col] = matrixB[row][columnFromMatrixB];
-                }else {
-                    resultMatrix[row][col] = matrixB[2-row][columnFromMatrixB];
+                } else {
+                    resultMatrix[row][col] = matrixB[2 - row][columnFromMatrixB];
                 }
             } else {
                 // Copy the rest of the elements from matrixA
@@ -133,7 +133,7 @@ function replaceColumn(matrixA, matrixB, columnToReplace, columnFromMatrixB, rev
 
 
 function replaceColumnWithRow(matrixA, matrixB, columnToReplace, rowFromMatrixB, reverse) {
-    if(
+    if (
         matrixA.length !== 3 ||
         matrixB.length !== 3 ||
         matrixA[0].length !== 3 ||
@@ -149,10 +149,10 @@ function replaceColumnWithRow(matrixA, matrixB, columnToReplace, rowFromMatrixB,
         for (let col = 0; col < 3; col++) {
             if (col === columnToReplace) {
                 // Replace the specified column with the corresponding row from matrixB
-                if(!reverse){
+                if (!reverse) {
                     resultMatrix[row][col] = matrixB[rowFromMatrixB][row];
-                }else {
-                    resultMatrix[row][col] = matrixB[rowFromMatrixB][2-row];
+                } else {
+                    resultMatrix[row][col] = matrixB[rowFromMatrixB][2 - row];
                 }
 
             } else {
@@ -182,10 +182,10 @@ function replaceRowWithColumn(matrixA, matrixB, rowToReplace, columnFromMatrixB,
         for (let col = 0; col < 3; col++) {
             if (row === rowToReplace) {
                 // Replace the specified row with the corresponding column from matrixB
-                if(!reverse){
+                if (!reverse) {
                     resultMatrix[row][col] = matrixB[col][columnFromMatrixB];
-                }else {
-                    resultMatrix[row][col] = matrixB[2-col][columnFromMatrixB];
+                } else {
+                    resultMatrix[row][col] = matrixB[2 - col][columnFromMatrixB];
                 }
 
             } else {
@@ -210,7 +210,7 @@ function rotateFrontCounterClockwise() {
     const temp4 = [...cube[4]];
     const temp5 = [...cube[5]];
     cube[3] = replaceColumnWithRow(cube[3], temp4, 2, 2, true);
-    cube[5] = replaceRowWithColumn(cube[5], temp3,  0, 2, false);
+    cube[5] = replaceRowWithColumn(cube[5], temp3, 0, 2, false);
     cube[1] = replaceColumnWithRow(cube[1], temp5, 0, 0, true);
     cube[4] = replaceRowWithColumn(cube[4], temp1, 2, 0, false);
 
@@ -236,14 +236,14 @@ function rotateRightCounterClockwise() {
 //   4
 // 3 0 1 2
 //   5
-function rotateBackCounterClockwise(){
+function rotateBackCounterClockwise() {
     cube[2] = rotateMatrixCounterclockwise(cube[2])
     const temp1 = [...cube[1]];
     const temp3 = [...cube[3]];
     const temp4 = [...cube[4]];
     const temp5 = [...cube[5]];
     cube[1] = replaceColumnWithRow(cube[1], cube[4], 2, 0, false);
-    cube[5] = replaceRowWithColumn(temp5, temp1,  2, 2, true);
+    cube[5] = replaceRowWithColumn(temp5, temp1, 2, 2, true);
     cube[3] = replaceColumnWithRow(temp3, temp5, 0, 2, false);
     cube[4] = replaceRowWithColumn(temp4, temp3, 0, 0, true);
 }
@@ -296,85 +296,85 @@ function rotateBottomCounterClockwise() {
     cube[0][2] = temp1[2]
 }
 
-function rotateBottomClockwise(){
+function rotateBottomClockwise() {
     rotateBottomCounterClockwise()
     rotateBottomCounterClockwise()
     rotateBottomCounterClockwise()
 }
 
-function rotateFrontClockwise(){
+function rotateFrontClockwise() {
     rotateFrontCounterClockwise()
     rotateFrontCounterClockwise()
     rotateFrontCounterClockwise()
 
 }
 
-function rotateRightClockwise(){
+function rotateRightClockwise() {
     rotateRightCounterClockwise()
     rotateRightCounterClockwise()
     rotateRightCounterClockwise()
 }
 
-function rotateLeftClockwise(){
+function rotateLeftClockwise() {
     rotateLeftCounterClockwise()
     rotateLeftCounterClockwise()
     rotateLeftCounterClockwise()
 }
 
-function rotateTopClockwise(){
+function rotateTopClockwise() {
     rotateTopCounterClockwise()
     rotateTopCounterClockwise()
     rotateTopCounterClockwise()
 }
 
-function rotateBackClockwise(){
+function rotateBackClockwise() {
     rotateBackCounterClockwise()
     rotateBackCounterClockwise()
     rotateBackCounterClockwise()
 }
 
-export function handleRotate(layer, count){
+function handleRotate(layer, count) {
     rotateLayer(layer, count)
     // console.log(count)
 
     switch (layer) {
         case 'front':
-            if(count){
+            if (count) {
                 rotateFrontCounterClockwise()
             } else {
                 rotateFrontClockwise()
             }
             break;
         case "back":
-            if(count){
+            if (count) {
                 rotateBackCounterClockwise()
             } else {
                 rotateBackClockwise()
             }
             break;
         case "right":
-            if(count){
+            if (count) {
                 rotateRightCounterClockwise()
             } else {
                 rotateRightClockwise()
             }
             break;
         case "left":
-            if(count){
+            if (count) {
                 rotateLeftCounterClockwise()
             } else {
                 rotateLeftClockwise()
             }
             break;
         case "top":
-            if(count){
+            if (count) {
                 rotateTopCounterClockwise()
             } else {
                 rotateTopClockwise()
             }
             break;
         case "bottom":
-            if(count){
+            if (count) {
                 rotateBottomCounterClockwise()
             } else {
                 rotateBottomClockwise()
@@ -385,15 +385,15 @@ export function handleRotate(layer, count){
 
 }
 
-function randomScramble(){
+function randomScramble() {
     const myArray = ["front", "back", "top", "bottom", "left", "right"];
     for (let i = 0; i < 40; i++) {
         const randomIndex = Math.floor(Math.random() * myArray.length);
         const conter = Math.floor(Math.random() * 2);
         console.log(myArray[randomIndex], conter)
-        if(conter === 1){
+        if (conter === 1) {
             handleRotate(myArray[randomIndex], true)
-        } else  {
+        } else {
             handleRotate(myArray[randomIndex], false)
         }
 
@@ -404,13 +404,13 @@ function randomScramble(){
 
 function getScrambleInput() {
     let modal = document.getElementById("input-modal");
-    let modal_content = document.getElementsByClassName("modal-content")[0];
     let red_input_b = document.getElementById("redInput");
     let green_input_b = document.getElementById("greenInput");
     let orange_input_b = document.getElementById("orangeInput");
     let blue_input_b = document.getElementById("blueInput");
     let yellow_input_b = document.getElementById("yellowInput");
     let white_input_b = document.getElementById("whiteInput");
+    let cube_input_b = document.getElementById("cubeInput");
     let close = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
 
@@ -480,8 +480,18 @@ function getScrambleInput() {
         cube[5][2][2] = document.getElementById('white-bottom-right').value;
     }
 
+    cube_input_b.onclick = () => {
+        red_input_b.onclick.apply(red_input_b);
+        green_input_b.onclick.apply(green_input_b);
+        orange_input_b.onclick.apply(orange_input_b);
+        blue_input_b.onclick.apply(blue_input_b);
+        yellow_input_b.onclick.apply(yellow_input_b);
+        white_input_b.onclick.apply(white_input_b);
+        createCubeFromInput(cube);
+        modal.style.display = "none";
+    }
+
     close.onclick = () => {
-        console.log(cube);
         createCubeFromInput(cube);
         modal.style.display = "none";
     }

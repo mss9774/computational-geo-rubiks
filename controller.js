@@ -333,7 +333,7 @@ function rotateBackClockwise() {
     rotateBackCounterClockwise()
 }
 
-function handleRotate(layer, count) {
+export function handleRotate(layer, count) {
     rotateLayer(layer, count)
     // console.log(count)
 

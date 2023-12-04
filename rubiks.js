@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+// import * as THREE from 'three';
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
 //import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
  
 const scene = new THREE.Scene();

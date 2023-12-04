@@ -628,7 +628,7 @@ findRed.addEventListener('click', () => {
     let n = redGreenMid();
     movesInterupter(n);
 
-    let t = m.concat(n).concat(o)
+    let t = m.concat(n)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -647,7 +647,7 @@ findBlue.addEventListener('click', () => {
     let n = blueRedMid();
     movesInterupter(n);
 
-    let t = m.concat(n).concat(o)
+    let t = m.concat(n)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -666,7 +666,7 @@ findOrange.addEventListener('click', () => {
     let n = orangeBlueMid();
     movesInterupter(n);
 
-    let t = m.concat(n).concat(o)
+    let t = m.concat(n)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -685,7 +685,7 @@ findGreen.addEventListener('click', () => {
     let n = greenOrangeMid();
     movesInterupter(n);
 
-    let t = m.concat(n).concat(o)
+    let t = m.concat(n)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"

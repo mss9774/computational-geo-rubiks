@@ -441,6 +441,51 @@ function lookAtYellowEdges(val){
     return "X";
 }
 
+function updateMovesList(movelist){
+    let moves = [];
+    movelist.forEach((element) => {
+        switch (element[0]) {
+            case "L":
+                if(element[1] === "C")
+                    moves.push("L'");
+                else
+                    moves.push("L");
+                break;
+            case "R":
+                if(element[1] === "C")
+                    moves.push("R'");
+                else
+                    moves.push("R");
+                break;
+            case "D":
+                if(element[1] === "C")
+                    moves.push("D'");
+                else
+                    moves.push("D");
+                break;
+            case "T":
+                if(element[1] === "C")
+                    moves.push("U'");
+                else
+                    moves.push("U");
+                break;
+            case "B":
+                if(element[1] === "C")
+                    moves.push("B'");
+                else
+                    moves.push("B");
+                break;
+            case "F":
+                if(element[1] === "C")
+                    moves.push("F'");
+                else
+                    moves.push("F");
+                break;
+
+        }
+    });
+    return moves
+}
 function displayMoves(n){
     let t =  updateMovesList(n);
     console.log(t)

@@ -28,8 +28,7 @@ const materials = colors.map((color) => new THREE.MeshBasicMaterial({ color }));
 
 // Create a function to create a single cubelet
 function createCubelet(x, y, z) {
-    //const cubeletSize = .97;
-    const cubeletSize = .85 +y *.1
+    const cubeletSize = .97;
     const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
     const cubeletMaterials = [
         materials[0], materials[1], materials[2], // Front, Back, Top
@@ -106,7 +105,7 @@ export function createCubeFromInput(cube) {
                     cubeletMaterials[1] = convertToColor(cube[3][1 - y][z + 1]);
                 }
                 if (y === 1) {
-                    cubeletMaterials[2] = convertToColor(cube[4][1 - z][x + 1]);
+                    cubeletMaterials[2] = convertToColor(cube[4][z + 1][x + 1]);
                 }
                 if (y === -1) {
                     cubeletMaterials[3] = convertToColor(cube[5][1 - z][x + 1]);

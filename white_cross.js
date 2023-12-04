@@ -837,8 +837,17 @@ findRed.addEventListener('click', () => {
     let o = whiteCrossRed();
     movesInterupter(o)
 
+
     let t = m.concat(n).concat(o)
-    displayMoves(t)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the red and white edge piece and moving it into place by avoiding other edges"
 });
 
 const findBlue = document.getElementById('find-whitecross-blue');
@@ -849,6 +858,16 @@ findBlue.addEventListener('click', () => {
     movesInterupter(n);
     let o = whiteCrossBlue()
     movesInterupter(o)
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the blue and white edge piece and moving it into place by avoiding other edges"
 });
 
 const findGreen = document.getElementById('find-whitecross-green');
@@ -859,6 +878,16 @@ findGreen.addEventListener('click', () => {
     movesInterupter(n);
     let o = whiteCrossGreen();
     movesInterupter(o)
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the green and white edge piece and moving it into place by avoiding other edges"
 });
 
 const findOrange = document.getElementById('find-whitecross-orange');
@@ -869,6 +898,16 @@ findOrange.addEventListener('click', () => {
     movesInterupter(n);
     let o = whiteCrossOrange();
     movesInterupter(o)
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the orange and white edge piece and moving it into place by avoiding other edges"
 });
 
 const findWhiteCross = document.getElementById('solve-whitecross');
@@ -900,4 +939,14 @@ findWhiteCross.addEventListener('click', () => {
     movesInterupter(w);
     let x = whiteCrossOrange();
     movesInterupter(x)
+
+    let y = m.concat(n).concat(o).concat(p).concat(q).concat(r).concat(s).concat(t).concat(u).concat(v).concat(w).concat(x)
+    if(y.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This section is perfect!"
+    }else{
+        displayMoves(y)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the all edge pieces and moving them into place by avoiding other edges"
 });

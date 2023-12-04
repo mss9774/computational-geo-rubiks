@@ -563,6 +563,18 @@ function movesInterupter(movelist){
     });
 }
 
+function displayMoves(n){
+    let t =  updateMovesList(n);
+    console.log("TE")
+    console.log(t)
+    let output = ""
+    t.forEach((element) =>{
+        output += " " + element
+    });
+
+    const temp = document.getElementById('move-label');
+    temp.textContent = output
+}
 
 const findRed = document.getElementById('find-mid-redgreen');
 findRed.addEventListener('click', () => {
@@ -570,6 +582,17 @@ findRed.addEventListener('click', () => {
     movesInterupter(m)
     let n = redGreenMid();
     movesInterupter(n);
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the red and green edge piece, by using a set algorithm."
+
 });
 
 const findBlue = document.getElementById('find-mid-blueRed');
@@ -578,6 +601,17 @@ findBlue.addEventListener('click', () => {
     movesInterupter(m)
     let n = blueRedMid();
     movesInterupter(n);
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the red and blue edge piece, by using a set algorithm."
+
 });
 
 const findOrange = document.getElementById('find-mid-orangeBlue');
@@ -586,6 +620,17 @@ findOrange.addEventListener('click', () => {
     movesInterupter(m)
     let n = orangeBlueMid();
     movesInterupter(n);
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the orange and blue edge piece, by using a set algorithm."
+
 });
 
 const findGreen = document.getElementById('find-mid-greenOrange');
@@ -594,6 +639,17 @@ findGreen.addEventListener('click', () => {
     movesInterupter(m)
     let n = greenOrangeMid();
     movesInterupter(n);
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the orange and green edge piece, by using a set algorithm."
+
 });
 
 const findMid = document.getElementById('solve-midLayer');
@@ -618,4 +674,16 @@ findMid.addEventListener('click', () => {
     movesInterupter(s)
     let t = greenOrangeMid();
     movesInterupter(t);
+
+
+    let y = m.concat(n).concat(o).concat(p).concat(q).concat(r).concat(s).concat(t)
+    if(y.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This section is perfect!"
+    }else{
+        displayMoves(y)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the all mid pieces and moving them into place by following a similar pattern"
+
 });

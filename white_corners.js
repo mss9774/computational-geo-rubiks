@@ -814,6 +814,19 @@ function movesInterupter(movelist){
     });
 }
 
+function displayMoves(n){
+    let t =  updateMovesList(n);
+    console.log("TE")
+    console.log(t)
+    let output = ""
+    t.forEach((element) =>{
+        output += " " + element
+    });
+
+    const temp = document.getElementById('move-label');
+    temp.textContent = output
+}
+
 
 const findRed = document.getElementById('find-whitecorner-red');
 findRed.addEventListener('click', () => {
@@ -821,6 +834,16 @@ findRed.addEventListener('click', () => {
     movesInterupter(m);
     let n = whiteCornerRed();
     movesInterupter(n)
+
+    let t = m.concat(n)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the red, blue, and white corner piece and moving it into place by avoiding other corners"
 });
 
 const findBlue = document.getElementById('find-whitecorner-blue');
@@ -829,6 +852,16 @@ findBlue.addEventListener('click', () => {
     movesInterupter(m);
     let n = whiteCornerBlue();
     movesInterupter(n)
+
+    let t = m.concat(n)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the orange, blue, and white corner piece and moving it into place by avoiding other corners"
 });
 
 const findGreen = document.getElementById('find-whitecorner-green');
@@ -837,6 +870,16 @@ findGreen.addEventListener('click', () => {
     movesInterupter(m);
     let n = whiteCornerGreen();
     movesInterupter(n)
+
+    let t = m.concat(n)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the green, red, and white corner piece and moving it into place by avoiding other corners"
 });
 
 const findOrange = document.getElementById('find-whitecorner-orange');
@@ -845,6 +888,16 @@ findOrange.addEventListener('click', () => {
     movesInterupter(m);
     let n = whiteCornerOrange();
     movesInterupter(n)
+
+    let t = m.concat(n)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This piece is perfect!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the orange, green, and white corner piece and moving it into place by avoiding other corners"
 });
 
 const findWhiteCorner = document.getElementById('solve-whitecorner');
@@ -869,4 +922,13 @@ findWhiteCorner.addEventListener('click', () => {
     let t = whiteCornerOrange();
     movesInterupter(t);
 
+    let y = m.concat(n).concat(o).concat(p).concat(q).concat(r).concat(s).concat(t)
+    if(y.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This section is perfect!"
+    }else{
+        displayMoves(y)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step involves finding the all corner pieces and moving them into place by avoiding other corners"
 });

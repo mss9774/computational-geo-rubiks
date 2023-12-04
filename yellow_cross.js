@@ -228,6 +228,16 @@ findRed.addEventListener('click', () => {
     movesInterupter(n);
     let o = yellowCross();
     movesInterupter(o);
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "The cross is already solved!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step creates the cross but not in the right position."
 });
 
 const yellowSides = document.getElementById('solve-yellowsides');
@@ -239,4 +249,14 @@ yellowSides.addEventListener('click', () => {
     movesInterupter(n);
     let o = yellowSidesOrange();
     movesInterupter(o);
+
+    let t = m.concat(n).concat(o)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "The cross is already aligned!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step creates the completed cross by swapping edges."
 });

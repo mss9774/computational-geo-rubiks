@@ -82,7 +82,7 @@ export function createCubeFromInput(cube) {
     for (let x = -1; x <= 1; x++) {
         for (let y = -1; y <= 1; y++) {
             for (let z = -1; z <= 1; z++) {
-                const cubeletSize = .75 + z *.1 + y*.1;
+                const cubeletSize = .97
                 const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
                 let cubeletMaterials = [
                     materials[6], materials[6], materials[6],

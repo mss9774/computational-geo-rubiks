@@ -103,7 +103,7 @@ function yellowCornerRed(){
                 moves.push("FC")
                 moves.push("TC")
                 moves.push("BN")
-                moves.push("TC")
+                moves.push("TN")
 
                 // moves.push("RN")
                 // moves.push("TC")
@@ -441,6 +441,63 @@ function lookAtYellowEdges(val){
     return "X";
 }
 
+function updateMovesList(movelist){
+    let moves = [];
+    movelist.forEach((element) => {
+        switch (element[0]) {
+            case "L":
+                if(element[1] === "C")
+                    moves.push("L'");
+                else
+                    moves.push("L");
+                break;
+            case "R":
+                if(element[1] === "C")
+                    moves.push("R'");
+                else
+                    moves.push("R");
+                break;
+            case "D":
+                if(element[1] === "C")
+                    moves.push("D'");
+                else
+                    moves.push("D");
+                break;
+            case "T":
+                if(element[1] === "C")
+                    moves.push("U'");
+                else
+                    moves.push("U");
+                break;
+            case "B":
+                if(element[1] === "C")
+                    moves.push("B'");
+                else
+                    moves.push("B");
+                break;
+            case "F":
+                if(element[1] === "C")
+                    moves.push("F'");
+                else
+                    moves.push("F");
+                break;
+
+        }
+    });
+    return moves
+}
+function displayMoves(n){
+    let t =  updateMovesList(n);
+    console.log(t)
+    let output = ""
+    t.forEach((element) =>{
+        output += " " + element
+    });
+
+    const temp = document.getElementById('move-label');
+    temp.textContent = output
+}
+
 const yellowSides = document.getElementById('solve-yellowcorner');
 yellowSides.addEventListener('click', () => {
     console.log([...cont.cube])
@@ -448,6 +505,16 @@ yellowSides.addEventListener('click', () => {
     movesInterupter(m)
     let n = otherCorners();
     movesInterupter(n);
+
+    let t = m.concat(n)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "This step is already done!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "This step places each corner in it's proper location but not necessarily face up"
 });
 
 const cubeFin = document.getElementById('solve-cube');
@@ -456,7 +523,16 @@ cubeFin.addEventListener('click', () => {
     let m = solveTop();
     movesInterupter(m)
     let n = cleanCube();
-    console.log(n)
     movesInterupter(n)
+
+    let t = m.concat(n)
+    if(t.length === 0){
+        const temp = document.getElementById('move-label');
+        temp.textContent = "The cube is already solved!"
+    }else{
+        displayMoves(t)
+    }
+    const temp = document.getElementById('desc-label');
+    temp.textContent = "Through repeating this pattern each corner is now face up and the cube is solved!"
 
 });

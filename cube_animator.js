@@ -22,14 +22,24 @@ function finishCurrentSet(){
 document.addEventListener('keydown', function (event) {
         var direction = getArrowDirection(event.key);
         if (direction === "Right") {
-            if(current_step + 1 < current_moves.length){
+            if(current_step + 1 < current_moves.length && !animation){
                 current_step += 1
-
+                movesInterupter(current_moves[current_step])
             }
+            document.getElementById('ani_count').innerText= (current_step+1) + "/" + current_moves.length;
+
         } else if (direction === "Left"){
-            if(current_step - 1 >= 0){
+            if(current_step - 1 >= -1 && !animation){
+
+                if(current_moves[current_step][1] === "N"){
+                    movesInterupter(current_moves[current_step][0] + "C")
+                } else {
+                    movesInterupter(current_moves[current_step][0] + "N")
+                }
                 current_step -= 1
             }
+            document.getElementById('ani_count').innerText= (current_step+1) + "/" + current_moves.length;
+
         }
 
 

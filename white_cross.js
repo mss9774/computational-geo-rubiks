@@ -1,5 +1,6 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
+import {uploadMoveSet} from "./cube_animator";
 
 
 //   4
@@ -839,6 +840,7 @@ findRed.addEventListener('click', () => {
 
 
     let t = m.concat(n).concat(o)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -860,6 +862,7 @@ findBlue.addEventListener('click', () => {
     movesInterupter(o)
 
     let t = m.concat(n).concat(o)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -880,6 +883,7 @@ findGreen.addEventListener('click', () => {
     movesInterupter(o)
 
     let t = m.concat(n).concat(o)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -900,6 +904,7 @@ findOrange.addEventListener('click', () => {
     movesInterupter(o)
 
     let t = m.concat(n).concat(o)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -941,6 +946,7 @@ findWhiteCross.addEventListener('click', () => {
     movesInterupter(x)
 
     let y = m.concat(n).concat(o).concat(p).concat(q).concat(r).concat(s).concat(t).concat(u).concat(v).concat(w).concat(x)
+    uploadMoveSet(y)
     if(y.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This section is perfect!"

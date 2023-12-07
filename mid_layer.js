@@ -1,5 +1,6 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
+import {uploadMoveSet} from "./cube_animator";
 
 
 //   4
@@ -629,6 +630,7 @@ findRed.addEventListener('click', () => {
     movesInterupter(n);
 
     let t = m.concat(n)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -648,6 +650,7 @@ findBlue.addEventListener('click', () => {
     movesInterupter(n);
 
     let t = m.concat(n)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -667,6 +670,7 @@ findOrange.addEventListener('click', () => {
     movesInterupter(n);
 
     let t = m.concat(n)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -675,7 +679,6 @@ findOrange.addEventListener('click', () => {
     }
     const temp = document.getElementById('desc-label');
     temp.textContent = "This step involves finding the orange and blue edge piece, by using a set algorithm."
-
 });
 
 const findGreen = document.getElementById('find-mid-greenOrange');
@@ -686,6 +689,7 @@ findGreen.addEventListener('click', () => {
     movesInterupter(n);
 
     let t = m.concat(n)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This piece is perfect!"
@@ -722,6 +726,7 @@ findMid.addEventListener('click', () => {
 
 
     let y = m.concat(n).concat(o).concat(p).concat(q).concat(r).concat(s).concat(t)
+    uploadMoveSet(y)
     if(y.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This section is perfect!"

@@ -1,5 +1,6 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
+import {uploadMoveSet} from "./cube_animator";
 
 console.log("OH NO")
 console.log(cont.cube)
@@ -270,7 +271,6 @@ function displayMoves(n){
     t.forEach((element) =>{
         output += " " + element
     });
-
     const temp = document.getElementById('move-label');
     temp.textContent = output
 }
@@ -286,6 +286,7 @@ findRed.addEventListener('click', () => {
     movesInterupter(o);
 
     let t = m.concat(n).concat(o)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "The cross is already solved!"
@@ -307,6 +308,7 @@ yellowSides.addEventListener('click', () => {
     movesInterupter(o);
 
     let t = m.concat(n).concat(o)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "The cross is already aligned!"

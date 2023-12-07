@@ -1,5 +1,6 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
+import {uploadMoveSet} from "./cube_animator";
 
 console.log("OH NO")
 console.log(cont.cube)
@@ -507,6 +508,7 @@ yellowSides.addEventListener('click', () => {
     movesInterupter(n);
 
     let t = m.concat(n)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "This step is already done!"
@@ -526,6 +528,7 @@ cubeFin.addEventListener('click', () => {
     movesInterupter(n)
 
     let t = m.concat(n)
+    uploadMoveSet(t)
     if(t.length === 0){
         const temp = document.getElementById('move-label');
         temp.textContent = "The cube is already solved!"

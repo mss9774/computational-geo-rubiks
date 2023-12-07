@@ -8,6 +8,7 @@
     <script type="module" src="mid_layer.js" defer></script>
     <script type="module" src="yellow_cross.js" defer></script>
     <script type="module" src="yellow_side.js" defer></script>
+    <script type="module" src="cube_animator.js" defer></script>
     <script type="module" src="rubiks.js"></script>
 </head>
 <body>
@@ -144,7 +145,11 @@
         </tbody>
     </table>
     <div id="cube-container"></div>
-
+    <label>Animation Step(Hit here or arrow keys to move between steps)</label>
+    <button id="ani_left"><</button>
+    <button id="ani_count">0/0</button>
+    <button id="ani_right">></button>
+    <br>
     <label>DESCRIPTION: </label>
     <label id="desc-label">Why it does what it does</label><br><br>
     <label>MOVES: </label>

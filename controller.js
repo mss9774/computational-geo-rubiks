@@ -1,4 +1,4 @@
-import { rotateLayer, createCubeFromInput } from './rubiks.js'
+import { rotateLayer, createCubeFromInput, animationLoop } from './rubiks.js'
 // import {func} from "three/addons/nodes/code/FunctionNode";
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
@@ -334,9 +334,12 @@ function rotateBackClockwise() {
 }
 
 export function handleRotate(layer, count) {
-    rotateLayer(layer, count)
+    //rotateLayer(layer, count);
+    animationLoop(layer, count);
+    
     // console.log(count)
 
+    //This will still run if isRunning is true
     switch (layer) {
         case 'front':
             if (count) {

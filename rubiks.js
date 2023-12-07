@@ -1,7 +1,8 @@
-// import * as THREE from 'three';
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
- 
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { cube } from './controller';
+
+let animation = false;
 const scene = new THREE.Scene();
 
 // Create a camera
@@ -17,7 +18,7 @@ renderer.setSize(window.innerWidth * scale, window.innerHeight * scale);
 
 const sceneContainer = document.getElementById('cube-container');
 sceneContainer.appendChild(renderer.domElement);
-//const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];
@@ -83,7 +84,7 @@ export function createCubeFromInput(cube) {
     for (let x = -1; x <= 1; x++) {
         for (let y = -1; y <= 1; y++) {
             for (let z = -1; z <= 1; z++) {
-                const cubeletSize = .75 + z *.1 + y*.1;
+                const cubeletSize = .97
                 const cubeletGeometry = new THREE.BoxGeometry(cubeletSize, cubeletSize, cubeletSize);
                 let cubeletMaterials = [
                     materials[6], materials[6], materials[6],
@@ -120,6 +121,257 @@ export function createCubeFromInput(cube) {
     }
     renderer.render(scene, camera);
 }
+
+export async function animationLoop(layer, counter, duration = 10) {
+
+    if (animation) {
+        return;
+    }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    animation = true;
+    for (let f = 0; f < duration; f++) {
+        rotateAnimation(layer, counter, duration);
+        await delay(100);
+    }
+    animation = false;
+
+    rubiksCube.children.forEach((cubelet) => {
+        cubelet.position.x = Math.round(cubelet.position.x);
+        cubelet.position.y = Math.round(cubelet.position.y);
+        cubelet.position.z = Math.round(cubelet.position.z);
+    });
+
+}
+
+function rotateAnimation(layer, counter, duration) {
+    console.log(layer);
+    // Define the rotation angle (in radians) and the rotation axis
+    let axis = new THREE.Vector3();
+    switch (layer) {
+        case 'top':
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === 1) {
+                        let x = cubelet.position.x;
+                        let z = cubelet.position.z;
+
+                        let cosTheta = Math.cos(-(Math.PI/2) / duration);
+                        let sinTheta = Math.sin(-(Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - z * sinTheta;
+                        let newZ = x * sinTheta + z * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.z = newZ;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), (Math.PI/2) / duration);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === 1) {
+                        let x = cubelet.position.x;
+                        let z = cubelet.position.z;
+
+                        let cosTheta = Math.cos((Math.PI/2) / duration);
+                        let sinTheta = Math.sin((Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - z * sinTheta;
+                        let newZ = x * sinTheta + z * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.z = newZ;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -(Math.PI/2) / duration);
+                    }
+                });
+            }
+            break;
+
+        case 'bottom':
+            if(!counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === -1) {
+                        let x = cubelet.position.x;
+                        let z = cubelet.position.z;
+
+                        let cosTheta = Math.cos(-(Math.PI/2) / duration);
+                        let sinTheta = Math.sin(-(Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - z * sinTheta;
+                        let newZ = x * sinTheta + z * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.z = newZ;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), -(Math.PI/2) / duration);
+                    }
+                });
+            }
+            else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.y === -1) {
+                        let x = cubelet.position.x;
+                        let z = cubelet.position.z;
+
+                        let cosTheta = Math.cos((Math.PI/2) / duration);
+                        let sinTheta = Math.sin((Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - z * sinTheta;
+                        let newZ = x * sinTheta + z * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.z = newZ;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, -1, 0), (Math.PI/2) / duration);
+                    }
+                });
+            }
+            break;
+
+        case 'left':
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.x === -1) {
+                        let z = cubelet.position.z;
+                        let y = cubelet.position.y;
+
+                        let cosTheta = Math.cos((Math.PI/2) / duration);
+                        let sinTheta = Math.sin((Math.PI/2) / duration);
+
+                        let newZ = z * cosTheta - y * sinTheta;
+                        let newY = z * sinTheta + y * cosTheta;
+                        cubelet.position.z = newZ;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), (Math.PI/2) / duration);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.x === -1) {
+                        let z = cubelet.position.z;
+                        let y = cubelet.position.y;
+
+                        let cosTheta = Math.cos(-(Math.PI/2) / duration);
+                        let sinTheta = Math.sin(-(Math.PI/2) / duration);
+
+                        let newZ = z * cosTheta - y * sinTheta;
+                        let newY = z * sinTheta + y * cosTheta;
+                        cubelet.position.z = newZ;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(-1, 0, 0), -(Math.PI/2) / duration);
+                    }
+                });
+            }
+            break;
+
+        case 'right':
+            if(!counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.x === 1) {
+                        let z = cubelet.position.z;
+                        let y = cubelet.position.y;
+
+                        let cosTheta = Math.cos((Math.PI/2) / duration);
+                        let sinTheta = Math.sin((Math.PI/2) / duration);
+
+                        let newZ = z * cosTheta - y * sinTheta;
+                        let newY = z * sinTheta + y * cosTheta;
+                        cubelet.position.z = newZ;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), -(Math.PI/2) / duration);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.x === 1) {
+                        let z = cubelet.position.z;
+                        let y = cubelet.position.y;
+
+                        let cosTheta = Math.cos(-(Math.PI/2) / duration);
+                        let sinTheta = Math.sin(-(Math.PI/2) / duration);
+
+                        let newZ = z * cosTheta - y * sinTheta;
+                        let newY = z * sinTheta + y * cosTheta;
+                        cubelet.position.z = newZ;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), (Math.PI/2) / duration);
+                    }
+                });
+            }
+            break;
+        case 'front':
+            if(counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === 1) {
+                        let x = cubelet.position.x;
+                        let y = cubelet.position.y;
+
+                        let cosTheta = Math.cos((Math.PI/2) / duration);
+                        let sinTheta = Math.sin((Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - y * sinTheta;
+                        let newY = x * sinTheta + y * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), (Math.PI/2) / duration);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === 1) {
+                        let x = cubelet.position.x;
+                        let y = cubelet.position.y;
+
+                        let cosTheta = Math.cos(-(Math.PI/2) / duration);
+                        let sinTheta = Math.sin(-(Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - y * sinTheta;
+                        let newY = x * sinTheta + y * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), -(Math.PI/2) / duration);
+                    }
+                });
+            }
+            break;
+        case 'back':
+            if(!counter){
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === -1) {
+                        let x = cubelet.position.x;
+                        let y = cubelet.position.y;
+                        
+                        let cosTheta = Math.cos((Math.PI/2) / duration);
+                        let sinTheta = Math.sin((Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - y * sinTheta;
+                        let newY = x * sinTheta + y * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, -1), -(Math.PI/2) / duration);
+                    }
+                });
+            } else {
+                rubiksCube.children.forEach((cubelet) => {
+                    if (cubelet.position.z === -1) {
+                        let x = cubelet.position.x;
+                        let y = cubelet.position.y;
+                        
+                        let cosTheta = Math.cos(-(Math.PI/2) / duration);
+                        let sinTheta = Math.sin(-(Math.PI/2) / duration);
+
+                        let newX = x * cosTheta - y * sinTheta;
+                        let newY = x * sinTheta + y * cosTheta;
+                        cubelet.position.x = newX;
+                        cubelet.position.y = newY;
+                        cubelet.rotateOnWorldAxis(new THREE.Vector3(0, 0, -1), (Math.PI/2) / duration);
+                    }
+                });
+            }
+            break;
+    }
+
+    renderer.render(scene, camera);
+
+}
+
 // Create an animation loop
 export function rotateLayer(layer, counter) {
     console.log(layer);

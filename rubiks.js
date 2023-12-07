@@ -1,8 +1,9 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { cube } from './controller';
+// import * as THREE from 'three';
+// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+import { cube } from './controller.js';
 
-let animation = false;
+export let animation = false;
 const scene = new THREE.Scene();
 
 // Create a camera
@@ -18,7 +19,7 @@ renderer.setSize(window.innerWidth * scale, window.innerHeight * scale);
 
 const sceneContainer = document.getElementById('cube-container');
 sceneContainer.appendChild(renderer.domElement);
-const controls = new OrbitControls(camera, renderer.domElement);
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 // Define colors for each face of the cube
 //const colors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 0xffa500, 0xffffff];

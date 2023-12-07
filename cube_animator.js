@@ -1,21 +1,22 @@
-import {handleRotate} from "./controller";
-import * as cont from "./controller";
+// import {handleRotate} from "./controller";
+import * as cont from "./controller.js";
+import {rotateLayer, createCubeFromInput, animationLoop, animation} from './rubiks.js'
+
+import {cube} from "./controller.js";
 
 let current_moves = []
 let current_step = 0
 
 export function uploadMoveSet(moveList){
-    finishCurrentSet()
+    //finishCurrentSet()
     current_moves = moveList
-    current_step = 0
-    movesInterupter(current_moves[0])
+    current_step = -1
+    // movesInterupter(current_moves[0])
     document.getElementById('ani_count').innerText= (current_step+1) + "/" + current_moves.length;
 }
 
 function finishCurrentSet(){
-    for(let i = current_step; i<current_moves.length; i++){
-
-    }
+    createCubeFromInput(cube)
 }
 
 document.addEventListener('keydown', function (event) {
@@ -49,65 +50,67 @@ function getArrowDirection(key) {
     }
 }
 function movesInterupter(movelist){
-    movelist.forEach((element) => {
-        switch (element[0]) {
+        switch (movelist[0]) {
             case "L":
-                if(element[1] === "C")
-                    cont.handleRotate("left", true);
+                if(movelist[1] === "C")
+                    animationLoop("left", true);
                 else
-                    cont.handleRotate("left", false);
+                    animationLoop("left", false);
                 break;
             case "R":
-                if(element[1] === "C")
-                    cont.handleRotate("right", true);
+                if(movelist[1] === "C")
+                    animationLoop("right", true);
                 else
-                    cont.handleRotate("right", false);
+                    animationLoop("right", false);
                 break;
             case "D":
-                if(element[1] === "C")
-                    cont.handleRotate("bottom", true);
+                if(movelist[1] === "C")
+                    animationLoop("bottom", true);
                 else
-                    cont.handleRotate("bottom", false);
+                    animationLoop("bottom", false);
                 break;
             case "T":
-                if(element[1] === "C")
-                    cont.handleRotate("top", true);
+                if(movelist[1] === "C")
+                    animationLoop("top", true);
                 else
-                    cont.handleRotate("top", false);
+                    animationLoop("top", false);
                 break;
             case "B":
-                if(element[1] === "C")
-                    cont.handleRotate("back", true);
+                if(movelist[1] === "C")
+                    animationLoop("back", true);
                 else
-                    cont.handleRotate("back", false);
+                    animationLoop("back", false);
                 break;
             case "F":
-                if(element[1] === "C")
-                    cont.handleRotate("front", true);
+                if(movelist[1] === "C")
+                    animationLoop("front", true);
                 else
-                    cont.handleRotate("front", false);
+                    animationLoop("front", false);
                 break;
 
         }
-    });
+    
 }
 
 const right = document.getElementById('ani_right');
 right.addEventListener('click', () => {
-        if(current_step + 1 < current_moves.length){
+        if(current_step + 1 < current_moves.length && !animation){
             current_step += 1
+            movesInterupter(current_moves[current_step])
         }
     document.getElementById('ani_count').innerText= (current_step+1) + "/" + current_moves.length;
 });
 
-const count = document.getElementById('ani_count');
-count.addEventListener('click', () => {
-    movesInterupter(current_moves[current_step])
-});
 
 const left = document.getElementById('ani_left');
 left.addEventListener('click', () => {
-    if(current_step - 1 >= 0){
+    if(current_step - 1 >= -1 && !animation){
+
+        if(current_moves[current_step][1] === "N"){
+            movesInterupter(current_moves[current_step][0] + "C")
+        } else {
+            movesInterupter(current_moves[current_step][0] + "N")
+        }
         current_step -= 1
     }
     document.getElementById('ani_count').innerText= (current_step+1) + "/" + current_moves.length;

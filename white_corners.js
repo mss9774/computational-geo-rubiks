@@ -1,6 +1,7 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
-import {uploadMoveSet} from "./cube_animator";
+import {uploadMoveSet} from "./cube_animator.js";
+import {createCubeFromInput} from "./rubiks";
 
 
 
@@ -875,6 +876,7 @@ function displayMoves(n){
 
 const findRed = document.getElementById('find-whitecorner-red');
 findRed.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCornerRed();
     movesInterupter(m);
     let n = whiteCornerRed();
@@ -894,6 +896,7 @@ findRed.addEventListener('click', () => {
 
 const findBlue = document.getElementById('find-whitecorner-blue');
 findBlue.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCornerBlue();
     movesInterupter(m);
     let n = whiteCornerBlue();
@@ -913,6 +916,7 @@ findBlue.addEventListener('click', () => {
 
 const findGreen = document.getElementById('find-whitecorner-green');
 findGreen.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCornerGreen();
     movesInterupter(m);
     let n = whiteCornerGreen();
@@ -932,6 +936,7 @@ findGreen.addEventListener('click', () => {
 
 const findOrange = document.getElementById('find-whitecorner-orange');
 findOrange.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCornerOrange();
     movesInterupter(m);
     let n = whiteCornerOrange();
@@ -951,6 +956,7 @@ findOrange.addEventListener('click', () => {
 
 const findWhiteCorner = document.getElementById('solve-whitecorner');
 findWhiteCorner.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCornerRed();
     movesInterupter(m);
     let n = whiteCornerRed();

@@ -1,6 +1,7 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
-import {uploadMoveSet} from "./cube_animator";
+import {uploadMoveSet} from "./cube_animator.js";
+import {createCubeFromInput} from "./rubiks";
 
 
 //   4
@@ -624,6 +625,7 @@ function displayMoves(n){
 
 const findRed = document.getElementById('find-mid-redgreen');
 findRed.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = redGreenMid();
     movesInterupter(m)
     let n = redGreenMid();
@@ -644,6 +646,7 @@ findRed.addEventListener('click', () => {
 
 const findBlue = document.getElementById('find-mid-blueRed');
 findBlue.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = blueRedMid();
     movesInterupter(m)
     let n = blueRedMid();
@@ -664,6 +667,7 @@ findBlue.addEventListener('click', () => {
 
 const findOrange = document.getElementById('find-mid-orangeBlue');
 findOrange.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = orangeBlueMid();
     movesInterupter(m)
     let n = orangeBlueMid();
@@ -683,6 +687,7 @@ findOrange.addEventListener('click', () => {
 
 const findGreen = document.getElementById('find-mid-greenOrange');
 findGreen.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = greenOrangeMid();
     movesInterupter(m)
     let n = greenOrangeMid();
@@ -703,6 +708,7 @@ findGreen.addEventListener('click', () => {
 
 const findMid = document.getElementById('solve-midLayer');
 findMid.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = redGreenMid();
     movesInterupter(m)
     let n = redGreenMid();

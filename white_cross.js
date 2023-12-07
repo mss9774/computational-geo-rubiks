@@ -1,7 +1,7 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
-import {uploadMoveSet} from "./cube_animator";
-
+import {uploadMoveSet} from "./cube_animator.js";
+import { rotateLayer, createCubeFromInput, animationLoop } from './rubiks.js'
 
 //   4
 // 3 0 1 2
@@ -831,6 +831,7 @@ function displayMoves(n){
 
 const findRed = document.getElementById('find-whitecross-red');
 findRed.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCrossRed();
     movesInterupter(m)
     let n = whiteCrossRed();
@@ -854,6 +855,7 @@ findRed.addEventListener('click', () => {
 
 const findBlue = document.getElementById('find-whitecross-blue');
 findBlue.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCrossBlue();
     movesInterupter(m)
     let n = whiteCrossBlue();
@@ -875,6 +877,7 @@ findBlue.addEventListener('click', () => {
 
 const findGreen = document.getElementById('find-whitecross-green');
 findGreen.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCrossGreen();
     movesInterupter(m)
     let n = whiteCrossGreen();
@@ -896,6 +899,7 @@ findGreen.addEventListener('click', () => {
 
 const findOrange = document.getElementById('find-whitecross-orange');
 findOrange.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCrossOrange();
     movesInterupter(m)
     let n = whiteCrossOrange();
@@ -917,6 +921,7 @@ findOrange.addEventListener('click', () => {
 
 const findWhiteCross = document.getElementById('solve-whitecross');
 findWhiteCross.addEventListener('click', () => {
+    createCubeFromInput(cube)
     let m = whiteCrossRed();
     movesInterupter(m)
     let n = whiteCrossRed();

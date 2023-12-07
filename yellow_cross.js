@@ -1,6 +1,7 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
-import {uploadMoveSet} from "./cube_animator";
+import {uploadMoveSet} from "./cube_animator.js";
+import {createCubeFromInput} from "./rubiks";
 
 console.log("OH NO")
 console.log(cont.cube)
@@ -299,6 +300,7 @@ findRed.addEventListener('click', () => {
 
 const yellowSides = document.getElementById('solve-yellowsides');
 yellowSides.addEventListener('click', () => {
+    createCubeFromInput(cube)
     console.log([...cont.cube])
     let m = yellowSidesRed();
     movesInterupter(m)

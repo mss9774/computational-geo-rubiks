@@ -1,5 +1,5 @@
-import { rotateLayer, createCubeFromInput, animationLoop } from './rubiks.js'
-// import {func} from "three/addons/nodes/code/FunctionNode";
+import {rotateLayer, createCubeFromInput, animationLoop, animation} from './rubiks.js'
+
 
 // Define a 3x3x3 matrix to represent the Rubik's Cube
 export const cube = [
@@ -335,56 +335,57 @@ function rotateBackClockwise() {
 
 export function handleRotate(layer, count) {
     //rotateLayer(layer, count);
-    animationLoop(layer, count);
+    // animationLoop(layer, count);
     
     // console.log(count)
 
     //This will still run if isRunning is true
-    switch (layer) {
-        case 'front':
-            if (count) {
-                rotateFrontCounterClockwise()
-            } else {
-                rotateFrontClockwise()
-            }
-            break;
-        case "back":
-            if (count) {
-                rotateBackCounterClockwise()
-            } else {
-                rotateBackClockwise()
-            }
-            break;
-        case "right":
-            if (count) {
-                rotateRightCounterClockwise()
-            } else {
-                rotateRightClockwise()
-            }
-            break;
-        case "left":
-            if (count) {
-                rotateLeftCounterClockwise()
-            } else {
-                rotateLeftClockwise()
-            }
-            break;
-        case "top":
-            if (count) {
-                rotateTopCounterClockwise()
-            } else {
-                rotateTopClockwise()
-            }
-            break;
-        case "bottom":
-            if (count) {
-                rotateBottomCounterClockwise()
-            } else {
-                rotateBottomClockwise()
-            }
-            break;
+    if (!animation) {
+        switch (layer) {
+            case 'front':
+                if (count) {
+                    rotateFrontCounterClockwise()
+                } else {
+                    rotateFrontClockwise()
+                }
+                break;
+            case "back":
+                if (count) {
+                    rotateBackCounterClockwise()
+                } else {
+                    rotateBackClockwise()
+                }
+                break;
+            case "right":
+                if (count) {
+                    rotateRightCounterClockwise()
+                } else {
+                    rotateRightClockwise()
+                }
+                break;
+            case "left":
+                if (count) {
+                    rotateLeftCounterClockwise()
+                } else {
+                    rotateLeftClockwise()
+                }
+                break;
+            case "top":
+                if (count) {
+                    rotateTopCounterClockwise()
+                } else {
+                    rotateTopClockwise()
+                }
+                break;
+            case "bottom":
+                if (count) {
+                    rotateBottomCounterClockwise()
+                } else {
+                    rotateBottomClockwise()
+                }
+                break;
+        }
     }
-
 
 }
 
@@ -401,6 +402,7 @@ function randomScramble() {
         }
 
     }
+    createCubeFromInput(cube)
     console.log(cube)
 
 }
@@ -516,31 +518,37 @@ input_scramble.addEventListener('click', () => {
 const rotateFrontButton = document.getElementById('rotate-front-button');
 rotateFrontButton.addEventListener('click', () => {
     handleRotate('front', true);
+    animationLoop('front', true);
 });
 
 const rotateRightButton = document.getElementById('rotate-right-button');
 rotateRightButton.addEventListener('click', () => {
     handleRotate('right', true);
+    animationLoop('right', true);
 });
 
 const rotateLeftButton = document.getElementById('rotate-left-button');
 rotateLeftButton.addEventListener('click', () => {
     handleRotate('left', true);
+    animationLoop('left', true);
 });
 
 const rotateTopButton = document.getElementById('rotate-top-button');
 rotateTopButton.addEventListener('click', () => {
     handleRotate('top', true);
+    animationLoop('top', true);
 });
 
 const rotateBottomButton = document.getElementById('rotate-bottom-button');
 rotateBottomButton.addEventListener('click', () => {
     handleRotate('bottom', true);
+    animationLoop('bottom', true);
 });
 
 const rotateBackButton = document.getElementById('rotate-back-button');
 rotateBackButton.addEventListener('click', () => {
     handleRotate('back', true);
+    animationLoop('back', true);
 });
 
 
@@ -548,31 +556,37 @@ rotateBackButton.addEventListener('click', () => {
 const rotateFrontCButton = document.getElementById('rotate-front-button-c');
 rotateFrontCButton.addEventListener('click', () => {
     handleRotate('front', false);
+    animationLoop('front', false);
 });
 
 const rotateRightCButton = document.getElementById('rotate-right-button-c');
 rotateRightCButton.addEventListener('click', () => {
     handleRotate('right', false);
+    animationLoop('right', false);
 });
 
 const rotateLeftCButton = document.getElementById('rotate-left-button-c');
 rotateLeftCButton.addEventListener('click', () => {
     handleRotate('left', false);
+    animationLoop('left', false);
 });
 
 const rotateTopCButton = document.getElementById('rotate-top-button-c');
 rotateTopCButton.addEventListener('click', () => {
     handleRotate('top', false);
+    animationLoop('top', false);
 });
 
 const rotateBottomCButton = document.getElementById('rotate-bottom-button-c');
 rotateBottomCButton.addEventListener('click', () => {
     handleRotate('bottom', false);
+    animationLoop('bottom', false);
 });
 
 const rotateBackCButton = document.getElementById('rotate-back-button-c');
 rotateBackCButton.addEventListener('click', () => {
     handleRotate('back', false);
+    animationLoop('back', false);
 });
 //   4
 // 3 0 1 2

@@ -1,7 +1,7 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
 import {uploadMoveSet} from "./cube_animator.js";
-import {createCubeFromInput} from "./rubiks";
+import {createCubeFromInput} from "./rubiks.js";
 
 console.log("OH NO")
 console.log(cont.cube)
@@ -278,6 +278,7 @@ function displayMoves(n){
 
 const findRed = document.getElementById('solve-yellowcross');
 findRed.addEventListener('click', () => {
+    createCubeFromInput(cube)
     console.log([...cont.cube])
     let m = yellowCross();
     movesInterupter(m)

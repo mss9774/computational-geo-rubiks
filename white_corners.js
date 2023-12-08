@@ -1,7 +1,7 @@
 import * as cont from   './controller.js'
 import {cube} from "./controller.js";
 import {uploadMoveSet} from "./cube_animator.js";
-import {createCubeFromInput} from "./rubiks";
+import {createCubeFromInput} from "./rubiks.js";
 
 
 
